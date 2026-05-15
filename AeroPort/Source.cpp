@@ -6,13 +6,6 @@
 using std::unique_ptr;
 using std::shared_ptr;
 int main() {
-	/*PassengerPlane p("Boeing 747", 150);
-	std::cout << p.info() << "\n";
-	CargoPlane c("C27J Spartan", 200);
-	std::cout << c.info() << "\n";
-	PrivateJet j("F16");
-	std::cout << j.info() << "\n";*/
-
 	std::shared_ptr<Airplane> at = std::make_shared<PrivateJet>("F16");
 	unique_ptr<Airplane> uniquePlane1 = std::make_unique<PassengerPlane>("Boeing", 100);
 	unique_ptr<Airplane> cloned1 = uniquePlane1->clone();
