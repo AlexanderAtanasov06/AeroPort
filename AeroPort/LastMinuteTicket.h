@@ -3,7 +3,8 @@
 
 class LastMinuteTicket : public Ticket{
 public:
-	LastMinuteTicket(const std::string& name, const std::string& flightID, double amount, double baggage);
+	LastMinuteTicket(const std::string& name, const std::string& flightID, double amount);
 	double getRefundAmount() override;
 	bool isRefundable() override;
+
 };

@@ -15,13 +15,13 @@ protected:
 	double paidAmount;
 	double baggageWeight;
 public:
-	Ticket(const std::string& name, const std::string& flightID, TicketType type, double amount, double baggage);
+	Ticket(const std::string& name, const std::string& flightID, TicketType type, double amount);
 	virtual ~Ticket() = default;
 
 	virtual double getRefundAmount() = 0;
 	virtual bool isRefundable() = 0;
 
-	//virtual void addBaggage(double weight);
+	//virtual void addBaggage(double weight) = 0;
 
 	std::string getPassengerName() const;
 	std::string getFlightId() const;

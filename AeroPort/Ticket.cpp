@@ -1,6 +1,8 @@
 #include "Ticket.h"
 
-Ticket::Ticket(const std::string& name, const std::string& flightID, TicketType type, double amount, double baggage) : passengerName(name), flightID(flightID), ticketType(type), paidAmount(amount), baggageWeight(baggage){}
+Ticket::Ticket(const std::string& name, const std::string& flightID, TicketType type, double amount)
+	: passengerName(name), flightID(flightID), ticketType(type), paidAmount(amount), baggageWeight(0) {
+}
 
 std::string Ticket::getPassengerName() const {
 	return passengerName;
