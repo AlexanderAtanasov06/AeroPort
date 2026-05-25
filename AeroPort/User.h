@@ -16,9 +16,9 @@ public:
 	User(const std::string& name, const std::string& pass, Role role);
 	virtual ~User() = default;
 
-	virtual void logout() = 0;
+	/*virtual void logout() = 0;
 	virtual void help() const = 0;
-	virtual void viewProfile() const = 0;
+	virtual void viewProfile() const = 0;*/
 
 	std::string getName() const;
 	bool checkPassword(const std::string& pass) const;

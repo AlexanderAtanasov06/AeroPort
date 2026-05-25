@@ -18,6 +18,7 @@ public:
 
 	virtual std::unique_ptr<Airplane> clone() const = 0;
 
+	bool isHealthy() const;
 	size_t getID() const;
 	std::string getModel() const;
 	size_t getHealth() const;

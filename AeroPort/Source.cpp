@@ -2,7 +2,10 @@
 #include "CargoPlane.h"
 #include "PrivateJet.h"
 #include "LastMinuteTicket.h"
+#include "VIPTicket.h"
+#include "Passenger.h"
 #include <vector>
+#include <print>
 
 using std::unique_ptr;
 using std::shared_ptr;
@@ -19,7 +22,8 @@ int main() {
 	std::vector<shared_ptr<Airplane>> v2;
 	v2.push_back(shared);
 
-	LastMinuteTicket ti("Alex", "SOF-CRL", 10, 10);
+	unique_ptr<Ticket> s = std::make_unique<VIPTicket>("Alex", "SOF-CRL", 50);
 
-	unique_ptr<Ticket> t = std::make_unique<LastMinuteTicket>();
+	Passenger p("Alex", "1234");
+	p.addFunds(100);
 }

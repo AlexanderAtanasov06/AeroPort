@@ -1,11 +1,13 @@
 #include "LastMinuteTicket.h"
 
-LastMinuteTicket::LastMinuteTicket(const std::string& name, const std::string& flightID, double amount) : Ticket(name, flightID, Ticket::TicketType::LAST_MINUTE, amount) {}
+LastMinuteTicket::LastMinuteTicket(const std::string& passengerName, const std::string& flightID, double baseFlightPrice)
+	: Ticket(passengerName, flightID, Ticket::TicketType::LAST_MINUTE, baseFlightPrice / 2, 0) {
+}
 
 double LastMinuteTicket::getRefundAmount() {
-    return 0;
+	return 0;
 }
 
 bool LastMinuteTicket::isRefundable() {
-    return false;
+	return false;
 }

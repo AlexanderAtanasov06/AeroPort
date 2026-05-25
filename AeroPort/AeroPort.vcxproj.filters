@@ -19,6 +19,9 @@
     <Filter Include="Header Files\Tickets">
       <UniqueIdentifier>{acd08f5c-3ea0-4e00-b2cc-995b04825637}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Users">
+      <UniqueIdentifier>{dc73399a-e9b9-45a9-bc76-5ff03b7651e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Airplane.h">
@@ -33,12 +36,6 @@
     <ClInclude Include="PrivateJet.h">
       <Filter>Header Files\Airplanes</Filter>
     </ClInclude>
-    <ClInclude Include="User.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Passenger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Ticket.h">
       <Filter>Header Files\Tickets</Filter>
     </ClInclude>
@@ -50,6 +47,15 @@
     </ClInclude>
     <ClInclude Include="LastMinuteTicket.h">
       <Filter>Header Files\Tickets</Filter>
+    </ClInclude>
+    <ClInclude Include="Passenger.h">
+      <Filter>Header Files\Users</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Header Files\Users</Filter>
+    </ClInclude>
+    <ClInclude Include="Flight.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +87,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LastMinuteTicket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Passenger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Flight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

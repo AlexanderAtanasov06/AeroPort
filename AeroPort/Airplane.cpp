@@ -6,6 +6,15 @@ Airplane::Airplane(const std::string& model) : ID(nextID), model(model) {
 	nextID++;
 }
 
+bool Airplane::isHealthy() const
+{
+	if (health > 20)
+	{
+		return true;
+	}
+	return false;
+}
+
 size_t Airplane::getID() const {
 	return ID;
 }
