@@ -1,16 +1,20 @@
 #pragma once
 #include "User.h"
 #include "Ticket.h"
+#include "TicketFactory.h"
+#include <vector>
 
 class Passenger : public User {
 private:
 	double funds;
+	std::vector<std::shared_ptr<Ticket>> tickets;
 public:
-	Passenger(const std::string& name, const std::string& pass);
+	Passenger(const std::string& name, const std::string& pass, double initialFunds = 0);
+
 
 	void addFunds(double amount);
-	void bookTicket(const std::string& flightID, Ticket::TicketType ticketType);
-	void upgradeTicket(const std::string& flightID, Ticket::TicketType newType);
+	void bookTicket(const std::string& flightID, std::string& ticketType);
+	void upgradeTicket(const std::string& flightID, std::string& newTicketType);
 	void addBaggage(const std::string& flightID, double weight);
 	void cancelTicket(const std::string& flightID);
 

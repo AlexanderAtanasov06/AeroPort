@@ -27,6 +27,6 @@ public:
 	std::shared_ptr<Airplane> getAirplane() const;
 	std::string getDestination() const;
 	double getBaseTicketPrice() const;
-	std::vector<Ticket> getSoldTickets() const;
+	const std::vector<Ticket>& getSoldTickets() const;
 	Status getStatus() const;
 };

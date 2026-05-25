@@ -4,8 +4,7 @@ Ticket::Ticket(const std::string& passengerName, const std::string& flightID, Ti
 	: passengerName(passengerName), flightID(flightID), ticketType(type), price(price), baggageWeight(0), remainingFreeBaggage(remainingFreeBaggage) {
 }
 
-double Ticket::calculateBaggageFee(double weight) const
-{
+double Ticket::calculateBaggageFee(double weight) const {
 	if (weight > remainingFreeBaggage) {
 		return (weight - remainingFreeBaggage) * BAGGAGE_FEE_PER_KILO_IN_EUR;
 	}
@@ -14,8 +13,7 @@ double Ticket::calculateBaggageFee(double weight) const
 	}
 }
 
-void Ticket::addBaggage(double weight, double paid)
-{
+void Ticket::addBaggage(double weight, double paid) {
 	double requiredAmount = calculateBaggageFee(weight);
 	if (paid < requiredAmount)
 	{
@@ -33,8 +31,7 @@ void Ticket::addBaggage(double weight, double paid)
 	baggageWeight += weight;
 }
 
-double Ticket::getTicketPrice() const
-{
+double Ticket::getTicketPrice() const {
 	return price;
 }
 

@@ -22,6 +22,15 @@
     <Filter Include="Header Files\Users">
       <UniqueIdentifier>{dc73399a-e9b9-45a9-bc76-5ff03b7651e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Airplanes">
+      <UniqueIdentifier>{541f7959-e129-482a-9fec-f1266b54a3e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tickets">
+      <UniqueIdentifier>{6d95fd9d-bfb5-48cf-9fb7-1f97a40fc8ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Users">
+      <UniqueIdentifier>{51bbb9fb-6d63-4079-a264-248d0bdaf7f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Airplane.h">
@@ -48,14 +57,29 @@
     <ClInclude Include="LastMinuteTicket.h">
       <Filter>Header Files\Tickets</Filter>
     </ClInclude>
-    <ClInclude Include="Passenger.h">
-      <Filter>Header Files\Users</Filter>
-    </ClInclude>
     <ClInclude Include="User.h">
       <Filter>Header Files\Users</Filter>
     </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Flight.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Passenger.h">
+      <Filter>Header Files\Users</Filter>
+    </ClInclude>
+    <ClInclude Include="TicketFactory.h">
+      <Filter>Header Files\Tickets</Filter>
+    </ClInclude>
+    <ClInclude Include="AirportAuthority.h">
+      <Filter>Header Files\Users</Filter>
+    </ClInclude>
+    <ClInclude Include="Dispatcher.h">
+      <Filter>Header Files\Users</Filter>
+    </ClInclude>
+    <ClInclude Include="IUserActions.h">
+      <Filter>Header Files\Users</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -63,37 +87,46 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Airplane.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Airplanes</Filter>
     </ClCompile>
     <ClCompile Include="CargoPlane.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Airplanes</Filter>
     </ClCompile>
     <ClCompile Include="PassengerPlane.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Airplanes</Filter>
     </ClCompile>
     <ClCompile Include="PrivateJet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="User.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Ticket.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StandardTicket.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VIPTicket.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Airplanes</Filter>
     </ClCompile>
     <ClCompile Include="LastMinuteTicket.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Tickets</Filter>
     </ClCompile>
-    <ClCompile Include="Passenger.cpp">
+    <ClCompile Include="StandardTicket.cpp">
+      <Filter>Source Files\Tickets</Filter>
+    </ClCompile>
+    <ClCompile Include="Ticket.cpp">
+      <Filter>Source Files\Tickets</Filter>
+    </ClCompile>
+    <ClCompile Include="VIPTicket.cpp">
+      <Filter>Source Files\Tickets</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Source Files\Users</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Flight.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Passenger.cpp">
+      <Filter>Source Files\Users</Filter>
+    </ClCompile>
+    <ClCompile Include="TicketFactory.cpp">
+      <Filter>Source Files\Tickets</Filter>
+    </ClCompile>
+    <ClCompile Include="Dispatcher.cpp">
+      <Filter>Source Files\Users</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

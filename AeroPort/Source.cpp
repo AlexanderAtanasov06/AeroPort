@@ -4,6 +4,8 @@
 #include "LastMinuteTicket.h"
 #include "VIPTicket.h"
 #include "Passenger.h"
+#include "TicketFactory.h"
+#include "Engine.h"
 #include <vector>
 #include <print>
 
@@ -26,4 +28,13 @@ int main() {
 
 	Passenger p("Alex", "1234");
 	p.addFunds(100);
+
+	auto t1 = TicketFactory::createTicket("Standard", "Alex", "SOF - CRL", 50);
+	auto t2 = TicketFactory::createTicket("VIP", "Alex", "SOF - CRL", 50);
+
+	Engine& engine = Engine::getInstance();
+
+	std::shared_ptr<User> sharedPassenger = std::make_shared<Passenger>("", "");
+
+
 }

@@ -125,20 +125,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Airplane.h" />
+    <ClInclude Include="AirportAuthority.h" />
     <ClInclude Include="CargoPlane.h" />
+    <ClInclude Include="Dispatcher.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="Flight.h" />
+    <ClInclude Include="IUserActions.h" />
     <ClInclude Include="LastMinuteTicket.h" />
     <ClInclude Include="Passenger.h" />
     <ClInclude Include="PassengerPlane.h" />
     <ClInclude Include="PrivateJet.h" />
     <ClInclude Include="StandardTicket.h" />
     <ClInclude Include="Ticket.h" />
+    <ClInclude Include="TicketFactory.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="VIPTicket.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Airplane.cpp" />
     <ClCompile Include="CargoPlane.cpp" />
+    <ClCompile Include="Dispatcher.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Flight.cpp" />
     <ClCompile Include="LastMinuteTicket.cpp" />
     <ClCompile Include="Passenger.cpp" />
@@ -147,6 +154,7 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="StandardTicket.cpp" />
     <ClCompile Include="Ticket.cpp" />
+    <ClCompile Include="TicketFactory.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="VIPTicket.cpp" />
   </ItemGroup>

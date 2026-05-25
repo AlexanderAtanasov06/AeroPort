@@ -1,7 +1,11 @@
 #pragma once
 #include <string>
+#include <print>
+#include "IUserActions.h"
 
-class User {
+class Engine;
+
+class User : public IUserActions {
 public:
 	enum class Role {
 		PASSENGER,
@@ -16,8 +20,10 @@ public:
 	User(const std::string& name, const std::string& pass, Role role);
 	virtual ~User() = default;
 
-	/*virtual void logout() = 0;
-	virtual void help() const = 0;
+	//virtual void handleCommand(std::vector<std::string>& args, Engine& engine) = 0;
+
+	virtual void logout();
+	/*virtual void help() const = 0;
 	virtual void viewProfile() const = 0;*/
 
 	std::string getName() const;
