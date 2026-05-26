@@ -2,7 +2,10 @@
 #include <iostream>
 #include <print>
 
-Engine::Engine() : isRunning(true), activeUser(nullptr) {}
+Engine::Engine() : isRunning(true), activeUser(nullptr) {
+	AirportAuthority& a = AirportAuthority::getInstance();
+	admin = std::make_shared<AirportAuthority>(a);
+}
 
 Engine& Engine::getInstance() {
 	static Engine e;
@@ -32,6 +35,12 @@ void Engine::processCommand(const std::string& line) {
 	}
 	else if (cmd == "logout") {
 		proccessLogoutCommand(args);
+	}
+	else if (activeUser) {
+
+	}
+	else {
+		std::println("[System] You are not logged in!");
 	}
 }
 
@@ -75,6 +84,11 @@ void Engine::proccessLoginCommand(std::vector<std::string> args) {
 }
 
 void Engine::proccessLogoutCommand(std::vector<std::string> args) {
+	if (args.size() != 1)
+	{
+		std::println("[System] Unrecognized command");
+		return;
+	}
 	if (!activeUser) {
 		std::println("[System] You are already logged out!");
 	}

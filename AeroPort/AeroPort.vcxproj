@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Airline.h" />
     <ClInclude Include="Airplane.h" />
     <ClInclude Include="AirportAuthority.h" />
     <ClInclude Include="CargoPlane.h" />
@@ -135,6 +136,7 @@
     <ClInclude Include="Passenger.h" />
     <ClInclude Include="PassengerPlane.h" />
     <ClInclude Include="PrivateJet.h" />
+    <ClInclude Include="Runway.h" />
     <ClInclude Include="StandardTicket.h" />
     <ClInclude Include="Ticket.h" />
     <ClInclude Include="TicketFactory.h" />
@@ -143,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Airplane.cpp" />
+    <ClCompile Include="AirportAuthority.cpp" />
     <ClCompile Include="CargoPlane.cpp" />
     <ClCompile Include="Dispatcher.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -151,6 +154,7 @@
     <ClCompile Include="Passenger.cpp" />
     <ClCompile Include="PassengerPlane.cpp" />
     <ClCompile Include="PrivateJet.cpp" />
+    <ClCompile Include="Runway.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="StandardTicket.cpp" />
     <ClCompile Include="Ticket.cpp" />

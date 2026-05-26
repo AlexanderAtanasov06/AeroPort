@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Users">
       <UniqueIdentifier>{51bbb9fb-6d63-4079-a264-248d0bdaf7f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Infrastructures">
+      <UniqueIdentifier>{ce8cb816-8d8a-4192-b009-0189d43e7d9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Airplane.h">
@@ -81,6 +84,12 @@
     <ClInclude Include="IUserActions.h">
       <Filter>Header Files\Users</Filter>
     </ClInclude>
+    <ClInclude Include="Airline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Runway.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -127,6 +136,12 @@
     </ClCompile>
     <ClCompile Include="Dispatcher.cpp">
       <Filter>Source Files\Users</Filter>
+    </ClCompile>
+    <ClCompile Include="AirportAuthority.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Runway.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

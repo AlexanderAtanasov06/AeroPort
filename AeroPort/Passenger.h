@@ -11,6 +11,7 @@ private:
 public:
 	Passenger(const std::string& name, const std::string& pass, double initialFunds = 0);
 
+	void help() const override;
 
 	void addFunds(double amount);
 	void bookTicket(const std::string& flightID, std::string& ticketType);

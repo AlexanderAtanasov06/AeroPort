@@ -34,7 +34,7 @@ int main() {
 
 	Engine& engine = Engine::getInstance();
 
-	std::shared_ptr<User> sharedPassenger = std::make_shared<Passenger>("", "");
-
+	std::shared_ptr<User> sharedPassenger = std::make_shared<AirportAuthority>(AirportAuthority::getInstance());
+	sharedPassenger->help();
 
 }
