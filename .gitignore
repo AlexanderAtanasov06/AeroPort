@@ -362,3 +362,8 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /AeroPort/main.cpp
+
+# --- Cmake ---
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
