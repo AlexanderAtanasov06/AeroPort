@@ -11,6 +11,7 @@ file(GLOB TICKET_SOURCES CONFIGURE_DEPENDS "tickets/*.cpp" "tickets/*.h")
 file(GLOB USER_SOURCES CONFIGURE_DEPENDS "users/*.cpp" "users/*.h")
 file(GLOB CORE_SOURCES CONFIGURE_DEPENDS "core/*.cpp" "core/*.h")
 file(GLOB INFRASTRUCTURE_SOURCES CONFIGURE_DEPENDS "infrastructure/*.cpp" "infrastructure/*.h")
+file(GLOB VISITOR_SOURCES CONFIGURE_DEPENDS "visitor/*.cpp" "visitor/*.h")
 
 add_executable(${PROJECT_NAME} 
 ${SOURCES} 
@@ -20,6 +21,7 @@ ${TICKET_SOURCES}
 ${USER_SOURCES}
 ${CORE_SOURCES}
 ${INFRASTRUCTURE_SOURCES}
+${VISITOR_SOURCES}
 )
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/include")
@@ -27,5 +29,5 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/include")
 endif()
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/airplanes")
-    target_include_directories(${PROJECT_NAME} PRIVATE airplanes tickets users core infrastructure)
+    target_include_directories(${PROJECT_NAME} PRIVATE airplanes tickets users core infrastructure visitor)
 endif()

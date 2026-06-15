@@ -22,4 +22,6 @@ public:
 	void listFlights(const std::string& destination) const;
 	void filterFlights(double maxPrice) const;
 	void listTickets() const;
+
+	void accept(CommandVisitor& visitor) override;
 };

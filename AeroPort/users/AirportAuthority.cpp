@@ -13,3 +13,7 @@ void AirportAuthority::help() const {
 	std::println("[System] Available commands for Administrator: build-runway, build-hangar, close-runway, set-weather, register-airline, buy-aircraft, clone-aircraft, send-to-hangar, schedule-flight, retrieve-from-hangar, cancel-flight, flight-revenue, list-fleet, airport-report, audit-airline, view-profile, logout, save, load");
 }
 
+void AirportAuthority::accept(CommandVisitor& visitor) {
+	visitor.visit(*this);
+}
+
