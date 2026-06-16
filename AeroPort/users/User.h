@@ -2,6 +2,7 @@
 #include <string>
 #include <print>
 #include "IUserActions.h"
+#include "CommandVisitor.h"
 
 class Engine;
 
@@ -24,9 +25,12 @@ public:
 
 	virtual void logout();
 	virtual void help() const = 0;
-	//virtual void viewProfile() const = 0;
+	virtual void viewProfile() const = 0;
+
+	virtual void accept(CommandVisitor& visitor) = 0;
 
 	std::string getName() const;
 	bool checkPassword(const std::string& pass) const;
 	Role getRole() const;
+	std::string getRoleStr() const;
 };

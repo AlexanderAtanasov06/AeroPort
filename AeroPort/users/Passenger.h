@@ -6,12 +6,13 @@
 
 class Passenger : public User {
 private:
-	double funds;
+	double balance;
 	std::vector<std::shared_ptr<Ticket>> tickets;
 public:
 	Passenger(const std::string& name, const std::string& pass, double initialFunds = 0);
 
 	void help() const override;
+	void viewProfile() const override;
 
 	void addFunds(double amount);
 	void bookTicket(const std::string& flightID, std::string& ticketType);
@@ -22,4 +23,9 @@ public:
 	void listFlights(const std::string& destination) const;
 	void filterFlights(double maxPrice) const;
 	void listTickets() const;
+
+	double getBalance() const;
+
+	void accept(CommandVisitor& visitor) override;
+
 };
