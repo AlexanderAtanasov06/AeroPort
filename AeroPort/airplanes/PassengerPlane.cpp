@@ -30,3 +30,7 @@ std::unique_ptr<Airplane> PassengerPlane::clone() const {
 	return std::make_unique<PassengerPlane>(this->model, this->capacity);
 }
 
+std::string PassengerPlane::getType() const {
+	return "PassengerPlane";
+}
+

@@ -14,6 +14,7 @@ public:
 	bool requiresVIP() const override;
 	bool requiresHeavyDuty() const override;
 	void decreaseHealthAfterFlight() override;
+	std::string getType() const;
 
 	std::unique_ptr<Airplane> clone() const override;
 };

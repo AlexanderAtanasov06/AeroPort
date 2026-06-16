@@ -4,7 +4,7 @@
 
 Engine::Engine() : isRunning(true), currentUser(nullptr) {
 	AirportAuthority& a = AirportAuthority::getInstance();
-	admin = std::make_shared<AirportAuthority>(a);
+	auto admin = std::make_shared<AirportAuthority>(a);
 	users.push_back(admin);
 }
 
@@ -33,6 +33,7 @@ void Engine::run() {
 	//save();
 }
 
+
 void Engine::proccessRegisterCommand(std::vector<std::string> args) {
 	if (args.size() != 4) {
 		std::println("[Error] Invalid arguments! Correct format is: register <name> <password> <role>.");
@@ -46,6 +47,13 @@ void Engine::proccessRegisterCommand(std::vector<std::string> args) {
 	if (name.empty() || pass.empty() || role.empty()) {
 		std::println("[Error] Invalid arguments! Correct format is: register <name> <password> <role>.");
 		return;
+	}
+
+	for (const auto& user : users) {
+		if (user->getName() == name) {
+			std::println("[Error] Username is taken!");
+			return;
+		}
 	}
 
 	if (role == "Dispatcher") {
@@ -143,3 +151,80 @@ std::vector<std::string> Engine::splitArguments(const std::string& line) {
 	}
 	return v;
 }
+
+void Engine::addRunway(std::shared_ptr<Runway> runway) {
+	runways.push_back(runway);
+}
+
+void Engine::addHangar(std::shared_ptr<Hangar> hangar) {
+	hangars.push_back(hangar);
+}
+
+void Engine::addAirline(std::shared_ptr<Airline> airline) {
+	airlines.push_back(airline);
+}
+
+std::shared_ptr<Airline> Engine::findAirlineByAircraftID(size_t id) const {
+	for (const auto& airline : airlines) {
+		auto airplane = airline->findAirplane(id);
+		if (airplane) {
+			return airline;
+		}
+	}
+	return nullptr;
+}
+
+std::shared_ptr<Runway> Engine::findRunway(const std::string& id) const {
+	auto it = std::find_if(runways.begin(), runways.end(), [&id](const auto& runway) {
+		return runway->getRunwayID() == id;
+		});
+	if (it != runways.end()) {
+		return *it;
+	}
+	return nullptr;
+}
+
+std::shared_ptr<Hangar> Engine::findHangar(const std::string& id) const {
+	auto it = std::find_if(hangars.begin(), hangars.end(), [&id](const auto& hangar) {
+		return hangar->getHangarID() == id;
+		});
+	if (it != hangars.end()) {
+		return *it;
+	}
+	return nullptr;
+}
+
+std::shared_ptr<Airline> Engine::findAirline(const std::string& name) const {
+	auto it = std::find_if(airlines.begin(), airlines.end(), [&name](const auto& airline) {
+		return airline->getName() == name;
+		});
+	if (it != airlines.end()) {
+		return *it;
+	}
+	return nullptr;
+}
+
+const std::vector<std::shared_ptr<Runway>>& Engine::getRunways() const {
+	return runways;
+}
+
+const std::vector<std::shared_ptr<Airline>>& Engine::getAirlines() const {
+	return airlines;
+}
+
+bool Engine::isAircraftInHangar(size_t aircraftID) const {
+	for (const auto& hangar : hangars) {
+		for (const auto& plane : hangar->getPlanes()) {
+			if (plane->getID() == aircraftID) return true;
+		}
+	}
+	return false;
+}
+
+bool Engine::isAircraftOnRunway(size_t aircraftID) const {
+	for (const auto& runway : runways) {
+		if (runway->getAssignedPlane()->getID() == aircraftID) return true;
+	}
+	return false;
+}
+

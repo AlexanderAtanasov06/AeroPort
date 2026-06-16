@@ -1,7 +1,7 @@
 #include "Flight.h"
 
 Flight::Flight(const std::string& flightID, std::shared_ptr<Airplane> plane, const std::string destination, double baseTicketPrice)
-	: flightID(flightID), plane(plane), destination(destination), baseTicketPrice(baseTicketPrice), status(Status::SCHEDULED) {
+	: flightID(flightID), plane(plane), destination(destination), baseTicketPrice(baseTicketPrice), status(Status::SCHEDULED), assignedRunway(nullptr) {
 }
 
 std::string Flight::getFlightID() const {
@@ -26,5 +26,17 @@ const std::vector<Ticket>& Flight::getSoldTickets() const {
 
 Flight::Status Flight::getStatus() const {
 	return status;
+}
+
+std::shared_ptr<Runway> Flight::getAssignedRunway() const {
+	return assignedRunway;
+}
+
+void Flight::setStatus(Status status) {
+	this->status = status;
+}
+
+void Flight::setAssignedRunway(std::shared_ptr<Runway> runway) {
+	assignedRunway = runway;
 }
 

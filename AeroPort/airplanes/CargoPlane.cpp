@@ -27,6 +27,10 @@ void CargoPlane::decreaseHealthAfterFlight() {
 	}
 }
 
+std::string CargoPlane::getType() const {
+	return "CargoPlane";
+}
+
 std::unique_ptr<Airplane> CargoPlane::clone() const {
 	return std::make_unique<CargoPlane>(this->model, this->loadCapacity);
 }

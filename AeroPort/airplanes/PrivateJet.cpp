@@ -27,6 +27,10 @@ void PrivateJet::decreaseHealthAfterFlight() {
 	}
 }
 
+std::string PrivateJet::getType() const {
+	return "PrivateJet";
+}
+
 std::unique_ptr<Airplane> PrivateJet::clone() const {
 	return std::make_unique<PrivateJet>(this->model);
 }

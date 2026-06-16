@@ -5,6 +5,13 @@
 #include <print>
 #include "CommandVisitor.h"
 #include "AddFundsCommand.h"
+#include "BuildRunwayCommand.h"
+#include "BuildHangarCommand.h"
+#include "CloseRunwayCommand.h"
+#include "RegisterAirlineCommand.h"
+#include "BuyAircraftCommand.h"
+#include "CloneAircraftCommand.h"
+#include "SendToHangarCommand.h"
 
 class CommandFactory {
 private:

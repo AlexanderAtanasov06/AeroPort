@@ -15,6 +15,7 @@ public:
 	virtual bool requiresVIP() const = 0;
 	virtual bool requiresHeavyDuty() const = 0;
 	virtual void decreaseHealthAfterFlight() = 0;
+	virtual std::string getType() const = 0;
 
 	virtual std::unique_ptr<Airplane> clone() const = 0;
 

@@ -1,12 +1,11 @@
 #pragma once
+#include "Engine.h"
 #include "CommandVisitor.h"
-#include "Passenger.h"
 
-class AddFundsCommand : public CommandVisitor {
-private:
-	double funds;
+class CloseRunwayCommand : public CommandVisitor {
+	std::string runwayID;
 public:
-	AddFundsCommand(double funds);
+	CloseRunwayCommand(const std::string& id);
 
 	void visit(Passenger& p) override;
 	void visit(Dispatcher& d) override;

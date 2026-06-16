@@ -27,6 +27,16 @@ public:
 		Builder& withHeavyDuty();
 		Runway build();
 	};
+
+	const std::string& getRunwayID() const;
+	int getLength() const;
+	bool isWithILS() const;
+	bool isWithHeavyDuty() const;
+	bool isWithVIP() const;
+	bool isOccupied() const;
+	std::shared_ptr<Airplane> getAssignedPlane() const;
+
+	void setStatus(Status status);
 private:
 	std::string runwayID;
 	int length;
@@ -34,6 +44,7 @@ private:
 	bool hasVIP = false;
 	bool hasHeavyDuty = false;
 	std::weak_ptr<Airplane> plane;
+	Status runwayStatus;
 
 	Runway(const std::string& runwayID, int length, bool hasILS, bool hasVIP, bool hasHeavyDuty);
 };
