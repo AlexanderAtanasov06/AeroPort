@@ -2,9 +2,15 @@
 
 std::unique_ptr<CommandVisitor> CommandFactory::create(const std::string& line) {
 	std::istringstream iss(line);
-	std::string commandType;
-	iss >> commandType;
-	std::println("{}", commandType);
+	std::string type;
+	iss >> type;
+
+	if (type == "add-funds") {
+		double funds;
+		iss >> funds;
+		return std::make_unique<AddFundsCommand>(funds);
+	}
+	
 
 	return nullptr;
 }

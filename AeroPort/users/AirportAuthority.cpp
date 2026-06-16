@@ -17,3 +17,7 @@ void AirportAuthority::accept(CommandVisitor& visitor) {
 	visitor.visit(*this);
 }
 
+void AirportAuthority::viewProfile() const {
+	std::println("[Profile] User: {} | Role: System Administrator | Privilege: ALL_ACCESS", name);
+}
+

@@ -1,33 +1,41 @@
 #include "Passenger.h"
 
 Passenger::Passenger(const std::string& name, const std::string& pass, double initialFunds)
-	: User(name, pass, Role::PASSENGER), funds(initialFunds) {
+	: User(name, pass, Role::PASSENGER), balance(initialFunds) {
 }
 
 void Passenger::help() const {
 	std::println(
 		R"([System] Available commands for Passenger:
-add-funds - "command description"
-list-flights - "command description"
-filter-flights - "command description"
-book-ticket - "command description"
-upgrade-ticket - "command description"
-add-baggage - "command description"
-cancel-ticket - "command description"
-my-tickets - "command description"
-view-profile - "command description"
-logout - "command description")"
+add-funds - "add-funds <amount>"
+list-flights - "list-flights <destination>"
+filter-flights - "filter-flights <max price>"
+book-ticket - "book-ticket <flight ID> <ticket type>"
+upgrade-ticket - "upgrade-ticket <flight ID> <new ticket type>"
+add-baggage - "add-baggage <flight ID> <weight>"
+cancel-ticket - "cancel-ticket <flight ID>"
+my-tickets - "lists all tickets and their flight status"
+view-profile - "shows information about your profile"
+logout - "logs you out of the system")"
 );
 }
 
 void Passenger::addFunds(double amount) {
-	funds += amount;
+	balance += amount;
 }
 
 void Passenger::bookTicket(const std::string& flightID, std::string& ticketType) {
 	//auto ticket = TicketFactory::createTicket(ticketType, name, flightID, )
 }
 
+double Passenger::getBalance() const {
+	return balance;
+}
+
 void Passenger::accept(CommandVisitor& visitor) {
 	visitor.visit(*this);
+}
+
+void Passenger::viewProfile() const {
+	std::println("[Profile] User: {} | Role: {} | Balance: {:.2f} EUR", name, getRoleStr(), balance);
 }

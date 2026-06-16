@@ -1,5 +1,6 @@
 #pragma once
 #include <print>
+#include <stdexcept>
 
 class Passenger;
 class Dispatcher;

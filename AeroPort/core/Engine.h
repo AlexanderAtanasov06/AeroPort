@@ -11,7 +11,7 @@
 #include <sstream>
 
 class Engine {
-public:
+private:
 	Engine();
 	bool isRunning;
 	std::shared_ptr<User> currentUser;
@@ -19,12 +19,13 @@ public:
 	//std::vector<std::shared_ptr<Passenger>> passengers;
 	//std::vector<std::shared_ptr<Dispatcher>> dispatchers;
 	std::vector<std::shared_ptr<User>> users;
-
-	static Engine& getInstance();
-	void processCommand(const std::string& line);
-	//void proccessRegisterCommand(std::vector<std::string> args);
-	//void proccessLoginCommand(std::vector<std::string> args);
-	//void proccessLogoutCommand(std::vector<std::string> args);
 	std::vector<std::string> splitArguments(const std::string& line);
+	void proccessLogoutCommand(std::vector<std::string> args);
+	void proccessLoginCommand(std::vector<std::string> args);
+	void proccessRegisterCommand(std::vector<std::string> args);
+	void processCommand(const std::string& line);
+	
+public:
+	static Engine& getInstance();
 	void run();
 };
