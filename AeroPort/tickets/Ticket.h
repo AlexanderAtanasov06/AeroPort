@@ -1,36 +1,41 @@
 #pragma once
 #include <string>
+#include <memory>
+#include <stdexcept>
+#include "IPricingStrategy.h"
 
 class Ticket {
-private:
-	static constexpr double BAGGAGE_FEE_PER_KILO_IN_EUR = 5;
+    static constexpr double BAGGAGE_FEE_PER_KILO_IN_EUR = 5.0;
+
+    std::string passengerName;
+    std::string flightID;
+    std::unique_ptr<IPricingStrategy> strategy;
+    double paidPrice;
+    double baggageWeight;
+    double remainingFreeBaggage;
+    
 public:
-	enum class TicketType {
-		STANDARD,
-		LAST_MINUTE,
-		VIP
-	};
-protected:
-	std::string passengerName;
-	std::string flightID;
-	TicketType ticketType;
-	double price;
-	double baggageWeight;
-	double remainingFreeBaggage;
-public:
-	Ticket(const std::string& passengerName, const std::string& flightID, TicketType type, double price, double remainingFreeBaggage);
-	virtual ~Ticket() = default;
+    Ticket(const std::string& passengerName,
+           const std::string& flightID,
+           std::unique_ptr<IPricingStrategy> strategy,
+           double basePrice);
 
-	virtual double getRefundAmount() = 0;
-	virtual bool isRefundable() = 0;
+    Ticket(const Ticket&) = delete;
+    Ticket& operator=(const Ticket&) = delete;
 
-	double calculateBaggageFee(double weight) const;
-	void addBaggage(double weight, double paid);
+    Ticket(Ticket&&) = default;
+    Ticket& operator=(Ticket&&) = default;
 
-	double getTicketPrice() const;
-	std::string getPassengerName() const;
-	std::string getFlightId() const;
-	double getPrice() const;
-	double getBaggageWeight() const;
-	TicketType getType() const;
+    void upgradeStrategy(std::unique_ptr<IPricingStrategy> newStrategy, double basePrice);
+
+    double calculateBaggageFee(double weight) const;
+    void addBaggage(double weight, double paid);
+
+    bool isRefundable() const;
+    double getRefundAmount() const;
+
+    std::string getPassengerName() const;
+    std::string getFlightId() const;
+    double getPrice() const;
+    double getBaggageWeight() const;
 };

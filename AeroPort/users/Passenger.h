@@ -15,16 +15,17 @@ public:
 	void viewProfile() const override;
 
 	void addFunds(double amount);
-	void bookTicket(const std::string& flightID, std::string& ticketType);
-	void upgradeTicket(const std::string& flightID, std::string& newTicketType);
-	void addBaggage(const std::string& flightID, double weight);
-	void cancelTicket(const std::string& flightID);
-
-	void listFlights(const std::string& destination) const;
-	void filterFlights(double maxPrice) const;
-	void listTickets() const;
+	void deductFunds(double amount);
 
 	double getBalance() const;
+	//void bookTicket(const std::string& flightID, std::string& ticketType);
+	//void upgradeTicket(const std::string& flightID, std::string& newTicketType);
+	//void addBaggage(const std::string& flightID, double weight);
+	//void cancelTicket(const std::string& flightID);
+
+	//void listFlights(const std::string& destination) const;
+	//void filterFlights(double maxPrice) const;
+	//void listTickets() const;
 
 	void accept(CommandVisitor& visitor) override;
 

@@ -16,6 +16,7 @@ public:
 	virtual bool requiresHeavyDuty() const = 0;
 	virtual void decreaseHealthAfterFlight() = 0;
 	virtual std::string getType() const = 0;
+	virtual size_t getCapacity() const = 0;
 
 	virtual std::unique_ptr<Airplane> clone() const = 0;
 

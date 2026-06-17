@@ -16,6 +16,7 @@ public:
 	bool requiresHeavyDuty() const override;
 	void decreaseHealthAfterFlight() override;
 	std::string getType() const override;
+	size_t getCapacity() const override;
 
 	std::unique_ptr<Airplane> clone() const override;
 };

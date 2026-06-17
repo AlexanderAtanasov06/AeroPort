@@ -34,3 +34,7 @@ std::string PassengerPlane::getType() const {
 	return "PassengerPlane";
 }
 
+size_t PassengerPlane::getCapacity() const {
+	return capacity;
+}
+

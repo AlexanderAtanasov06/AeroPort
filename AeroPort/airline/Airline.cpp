@@ -48,3 +48,7 @@ void Airline::addAirplane(std::shared_ptr<Airplane> plane) {
 	fleet.push_back(plane);
 }
 
+void Airline::addFlight(std::shared_ptr<Flight> flight) {
+	flights.push_back(flight);
+}
+

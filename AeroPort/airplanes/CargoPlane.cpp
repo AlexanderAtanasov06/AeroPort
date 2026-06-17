@@ -31,6 +31,10 @@ std::string CargoPlane::getType() const {
 	return "CargoPlane";
 }
 
+size_t CargoPlane::getCapacity() const {
+	return loadCapacity;
+}
+
 std::unique_ptr<Airplane> CargoPlane::clone() const {
 	return std::make_unique<CargoPlane>(this->model, this->loadCapacity);
 }

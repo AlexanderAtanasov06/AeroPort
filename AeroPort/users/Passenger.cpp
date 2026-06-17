@@ -24,8 +24,8 @@ void Passenger::addFunds(double amount) {
 	balance += amount;
 }
 
-void Passenger::bookTicket(const std::string& flightID, std::string& ticketType) {
-	//auto ticket = TicketFactory::createTicket(ticketType, name, flightID, )
+void Passenger::deductFunds(double amount) {
+	balance -= amount;
 }
 
 double Passenger::getBalance() const {
