@@ -1,6 +1,6 @@
 #include "Hangar.h"
 
-Hangar::Hangar(const std::string& id, size_t capacity, double fee) 
+Hangar::Hangar(const std::string& id, size_t capacity, double fee)
 	: hangarID(id), capacity(capacity), repairFee(fee) {
 }
 
@@ -9,6 +9,21 @@ void Hangar::addAircraft(std::shared_ptr<Airplane> plane) {
 		throw std::logic_error("[Error] Hangar full!");
 	}
 	planes.push_back(plane);
+}
+
+std::shared_ptr<Airplane> Hangar::removeAircraft(size_t id) {
+	auto it = std::find_if(planes.begin(), planes.end(),
+		[&id](const std::shared_ptr<Airplane>& p) {
+			return p->getID() == id;
+		});
+
+	if (it == planes.end()) {
+		return nullptr;
+	}
+
+	std::shared_ptr<Airplane> plane = *it;
+	planes.erase(it);
+	return plane;
 }
 
 size_t Hangar::getCapacity() const {

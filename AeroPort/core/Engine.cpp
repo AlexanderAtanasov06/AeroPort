@@ -174,6 +174,16 @@ std::shared_ptr<Airline> Engine::findAirlineByAircraftID(size_t id) const {
 	return nullptr;
 }
 
+std::shared_ptr<Hangar> Engine::findHangarByAircraftID(size_t id) const {
+	for (const auto& hangar : hangars) {
+		auto airplane = hangar->findAirplane(id);
+		if (airplane) {
+			return hangar;
+		}
+	}
+	return nullptr;
+}
+
 std::shared_ptr<Runway> Engine::findRunway(const std::string& id) const {
 	auto it = std::find_if(runways.begin(), runways.end(), [&id](const auto& runway) {
 		return runway->getRunwayID() == id;

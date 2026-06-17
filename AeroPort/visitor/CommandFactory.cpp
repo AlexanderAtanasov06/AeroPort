@@ -51,6 +51,11 @@ std::unique_ptr<CommandVisitor> CommandFactory::create(const std::string& line) 
 		}
 		return std::make_unique<SendToHangarCommand>(id, hID);
 	}
+	if (type == "retrieve-from-hangar") {
+		size_t id;
+		iss >> id;
+		return std::make_unique<RetrieveFromHangarCommand>(id);
+	}
 
 	return nullptr;
 }

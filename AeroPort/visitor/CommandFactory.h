@@ -12,6 +12,7 @@
 #include "BuyAircraftCommand.h"
 #include "CloneAircraftCommand.h"
 #include "SendToHangarCommand.h"
+#include "RetrieveFromHangarCommand.h"
 
 class CommandFactory {
 private:

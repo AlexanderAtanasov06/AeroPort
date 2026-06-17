@@ -6,6 +6,10 @@ Airplane::Airplane(const std::string& model) : ID(nextID), model(model) {
 	nextID++;
 }
 
+void Airplane::restoreHealth() {
+	health = 100;
+}
+
 bool Airplane::isHealthy() const
 {
 	if (health > 20)

@@ -11,6 +11,7 @@ public:
 	Hangar(const std::string& id, size_t capacity, double fee);
 
 	void addAircraft(std::shared_ptr<Airplane> plane);
+	std::shared_ptr<Airplane> removeAircraft(size_t id);
 
 	size_t getCapacity() const;
 	double getRepairFee() const;
