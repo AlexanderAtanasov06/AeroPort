@@ -15,8 +15,9 @@ BookTicketCommand::BookTicketCommand(const std::string& flightId, const std::str
 }
 
 void BookTicketCommand::visit(Passenger& p) {
-    std::shared_ptr<Flight> flight;
+    std::shared_ptr<Flight> flight = nullptr;
     Engine& e = Engine::getInstance();
+
     for (const auto& airline : e.getAirlines()) {
         flight = airline->findFlight(flightId);
         if (flight) {
@@ -36,7 +37,7 @@ void BookTicketCommand::visit(Passenger& p) {
         return;
     }
 
-    if (flight->getAirplane()->getType() == "CargoPlane" && ticketType == "VIP") {
+    if (flight->getAirplane().lock()->getType() == "CargoPlane" && ticketType == "VIP") {
         std::println("[Error] You cannot purchase VIP tickets for Cargo flights!");
         return;
     }
@@ -47,7 +48,8 @@ void BookTicketCommand::visit(Passenger& p) {
     }
 
     double basePrice = flight->getBaseTicketPrice();
-    auto ticket = TicketFactory::createTicket(ticketType, p.getName(), flightId, basePrice);
+    auto uniqueTicketPtr = TicketFactory::createTicket(ticketType, p.getName(), flightId, basePrice);
+    std::shared_ptr<Ticket> ticket = std::move(uniqueTicketPtr);
 
     if (!ticket) {
         std::println("[Error] Could not create ticket of type {}!", ticketType);
@@ -63,7 +65,8 @@ void BookTicketCommand::visit(Passenger& p) {
     }
 
     p.deductFunds(ticketPrice);
-    flight->addTicket(std::move(ticket));
+    p.addTicket(ticket);
+    flight->addTicket(ticket);
 
     std::print("[Success] ");
     if (ticketType == "Standard") {

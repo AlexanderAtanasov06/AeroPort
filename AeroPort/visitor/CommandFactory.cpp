@@ -27,6 +27,11 @@ std::unique_ptr<CommandVisitor> CommandFactory::create(const std::string& line) 
 	if (type == "schedule-flight") {
 		return std::make_unique<ScheduleFlightCommand>(line);
 	}
+	if (type == "cancel-flight") {
+		std::string id;
+		iss >> id;
+		return std::make_unique<CancelFlightCommand>(id);
+	}
 
 	if (type == "build-runway") {
 		return std::make_unique<BuildRunwayCommand>(line);
@@ -77,12 +82,12 @@ std::unique_ptr<CommandVisitor> CommandFactory::create(const std::string& line) 
 	return nullptr;
 }
 
-std::vector<std::string> CommandFactory::splitArguments(const std::string& line) {
-	std::vector<std::string> v;
-	std::istringstream iss(line);
-	std::string word;
-	while (iss >> word) {
-		v.push_back(word);
-	}
-	return v;
-}
+//std::vector<std::string> CommandFactory::splitArguments(const std::string& line) {
+//	std::vector<std::string> v;
+//	std::istringstream iss(line);
+//	std::string word;
+//	while (iss >> word) {
+//		v.push_back(word);
+//	}
+//	return v;
+//}

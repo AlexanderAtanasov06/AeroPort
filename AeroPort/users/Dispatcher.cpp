@@ -14,6 +14,10 @@ void Dispatcher::accept(CommandVisitor& visitor) {
 	visitor.visit(*this);
 }
 
+void Dispatcher::accept(UserVisitor& visitor) {
+	visitor.visit(*this);
+}
+
 void Dispatcher::viewProfile() const {
 	std::println("[Profile] User: {} | Role: Air Traffic Control", name);
 }

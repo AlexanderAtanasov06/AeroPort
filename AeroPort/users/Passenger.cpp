@@ -20,12 +20,27 @@ logout - "logs you out of the system")"
 );
 }
 
-void Passenger::addFunds(double amount) {
+bool Passenger::addFunds(double amount) {
 	balance += amount;
+	return true;
 }
 
 void Passenger::deductFunds(double amount) {
 	balance -= amount;
+}
+
+void Passenger::addTicket(std::shared_ptr<Ticket> ticket) {
+	tickets.push_back(ticket);
+}
+
+void Passenger::removeTicketsWithFlightID(const std::string& flightID) {
+	std::erase_if(tickets, [&flightID](const auto& ticket) {
+		return flightID == ticket->getFlightID();
+		});
+}
+
+const std::vector<std::shared_ptr<Ticket>>& Passenger::getTickets() const {
+	return tickets;
 }
 
 double Passenger::getBalance() const {
@@ -34,6 +49,10 @@ double Passenger::getBalance() const {
 
 void Passenger::accept(CommandVisitor& visitor) {
 	visitor.visit(*this);
+}
+
+void Passenger::accept(UserVisitor& userVisitor) {
+	userVisitor.visit(*this);
 }
 
 void Passenger::viewProfile() const {

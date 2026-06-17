@@ -183,6 +183,16 @@ std::shared_ptr<Hangar> Engine::findHangarByAircraftID(size_t id) const {
 	return nullptr;
 }
 
+std::shared_ptr<User> Engine::findUserByName(const std::string& name) const {
+	auto it = std::find_if(users.begin(), users.end(), [&name](const auto& user) {
+		return user->getName() == name;
+		});
+	if (it != users.end()) {
+		return *it;
+	}
+	return nullptr;
+}
+
 std::shared_ptr<Runway> Engine::findRunway(const std::string& id) const {
 	auto it = std::find_if(runways.begin(), runways.end(), [&id](const auto& runway) {
 		return runway->getRunwayID() == id;

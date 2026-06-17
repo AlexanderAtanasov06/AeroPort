@@ -8,7 +8,7 @@ std::string Flight::getFlightID() const {
 	return flightID;
 }
 
-std::shared_ptr<Airplane> Flight::getAirplane() const {
+std::weak_ptr<Airplane> Flight::getAirplane() const {
 	return plane;
 }
 
@@ -50,7 +50,7 @@ std::shared_ptr<Runway> Flight::getAssignedRunway() const {
 }
 
 bool Flight::hasAvailableSeats() const {
-    return plane->getCapacity() > soldTickets.size();
+    return plane.lock()->getCapacity() > soldTickets.size();
 }
 
 void Flight::setStatus(Status status) {

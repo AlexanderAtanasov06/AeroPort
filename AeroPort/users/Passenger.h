@@ -14,19 +14,16 @@ public:
 	void help() const override;
 	void viewProfile() const override;
 
-	void addFunds(double amount);
+	bool addFunds(double amount);
 	void deductFunds(double amount);
 
-	double getBalance() const;
-	//void bookTicket(const std::string& flightID, std::string& ticketType);
-	//void upgradeTicket(const std::string& flightID, std::string& newTicketType);
-	//void addBaggage(const std::string& flightID, double weight);
-	//void cancelTicket(const std::string& flightID);
+	void addTicket(std::shared_ptr<Ticket> ticket);
+	void removeTicketsWithFlightID(const std::string& flightID);
 
-	//void listFlights(const std::string& destination) const;
-	//void filterFlights(double maxPrice) const;
-	//void listTickets() const;
+	const std::vector<std::shared_ptr<Ticket>>& getTickets() const;
+	double getBalance() const;
 
 	void accept(CommandVisitor& visitor) override;
+	void accept(UserVisitor& userVisitor) override;
 
 };

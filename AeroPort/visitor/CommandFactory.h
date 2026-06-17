@@ -16,10 +16,11 @@
 #include "BookTicketCommand.h"
 #include "ListFlightsCommand.h"
 #include "ScheduleFlightCommand.h"
+#include "CancelFlightCommand.h"
 
 class CommandFactory {
 private:
-	std::vector<std::string> splitArguments(const std::string& line);
+	//std::vector<std::string> splitArguments(const std::string& line);
 public:
 	CommandFactory() = delete;
 	static std::unique_ptr<CommandVisitor> create(const std::string& line);

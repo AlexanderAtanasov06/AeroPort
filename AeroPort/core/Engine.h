@@ -45,6 +45,7 @@ public:
 
 	std::shared_ptr<Airline> findAirlineByAircraftID(size_t id) const;
 	std::shared_ptr<Hangar> findHangarByAircraftID(size_t id) const;
+	std::shared_ptr<User> findUserByName(const std::string& name) const;
 	std::shared_ptr<Runway> findRunway(const std::string& id) const;
 	std::shared_ptr<Hangar> findHangar(const std::string& id) const;
 	std::shared_ptr<Airline> findAirline(const std::string& name) const;

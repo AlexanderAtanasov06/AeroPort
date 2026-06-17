@@ -35,7 +35,7 @@ public:
     double getRefundAmount() const;
 
     std::string getPassengerName() const;
-    std::string getFlightId() const;
+    std::string getFlightID() const;
     double getPrice() const;
     double getBaggageWeight() const;
 };

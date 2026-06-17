@@ -10,5 +10,6 @@ public:
 	void viewProfile() const override;
 
 	void accept(CommandVisitor& visitor) override;
+	void accept(UserVisitor& visitor) override;
 
 };
