@@ -15,6 +15,7 @@ file(GLOB VISITOR_SOURCES CONFIGURE_DEPENDS "visitor/*.cpp" "visitor/*.h")
 file(GLOB OPERATIONS_SOURCES CONFIGURE_DEPENDS "operations/*.cpp" "operations/*.h")
 file(GLOB AIRLINE_SOURCES CONFIGURE_DEPENDS "airline/*.cpp" "airline/*.h")
 file(GLOB ADMIN_COMMANDS_SOURCES CONFIGURE_DEPENDS "visitor/admin-commands/*.cpp" "visitor/admin-commands/*.h")
+file(GLOB PASSENGER_COMMANDS_SOURCES CONFIGURE_DEPENDS "visitor/passenger-commands/*.cpp" "visitor/passenger-commands/*.h")
 
 add_executable(${PROJECT_NAME} 
 ${SOURCES} 
@@ -28,6 +29,7 @@ ${VISITOR_SOURCES}
 ${OPERATIONS_SOURCES}
 ${AIRLINE_SOURCES}
 ${ADMIN_COMMANDS_SOURCES}
+${PASSENGER_COMMANDS_SOURCES}
 )
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/include")
@@ -35,5 +37,5 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/include")
 endif()
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/airplanes")
-    target_include_directories(${PROJECT_NAME} PRIVATE admin-commands airline operations airplanes tickets users core infrastructure visitor)
+    target_include_directories(${PROJECT_NAME} PRIVATE visitor/passenger-commands visitor/admin-commands airline operations airplanes tickets users core infrastructure visitor)
 endif()

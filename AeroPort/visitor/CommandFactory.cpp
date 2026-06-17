@@ -10,7 +10,24 @@ std::unique_ptr<CommandVisitor> CommandFactory::create(const std::string& line) 
 		iss >> funds;
 		return std::make_unique<AddFundsCommand>(funds);
 	}
-	
+	if (type == "book-ticket") {
+		std::string flightID, ticketType;
+		if (!(iss >> flightID >> ticketType)) {
+			throw std::invalid_argument("[Error] Correct format is: book-ticket <flight id> <ticket type>");
+		}
+		return std::make_unique<BookTicketCommand>(flightID, ticketType);
+	}
+	if (type == "list-flights") {
+		std::string destination;
+		if (!(iss >> destination)) {
+			throw std::invalid_argument("[Error] Correct format is: list-flights <destination>");
+		}
+		return std::make_unique<ListFlightsCommand>(destination);
+	}
+	if (type == "schedule-flight") {
+		return std::make_unique<ScheduleFlightCommand>(line);
+	}
+
 	if (type == "build-runway") {
 		return std::make_unique<BuildRunwayCommand>(line);
 	}

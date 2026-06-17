@@ -33,7 +33,6 @@ void Engine::run() {
 	//save();
 }
 
-
 void Engine::proccessRegisterCommand(std::vector<std::string> args) {
 	if (args.size() != 4) {
 		std::println("[Error] Invalid arguments! Correct format is: register <name> <password> <role>.");

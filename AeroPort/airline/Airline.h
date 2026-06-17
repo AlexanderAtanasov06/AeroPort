@@ -23,4 +23,5 @@ public:
 	void deductBalance(double amount);
 
 	void addAirplane(std::shared_ptr<Airplane> plane);
+	void addFlight(std::shared_ptr<Flight> flight);
 };

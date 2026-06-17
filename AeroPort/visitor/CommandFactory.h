@@ -13,6 +13,9 @@
 #include "CloneAircraftCommand.h"
 #include "SendToHangarCommand.h"
 #include "RetrieveFromHangarCommand.h"
+#include "BookTicketCommand.h"
+#include "ListFlightsCommand.h"
+#include "ScheduleFlightCommand.h"
 
 class CommandFactory {
 private:

@@ -31,6 +31,10 @@ std::string PrivateJet::getType() const {
 	return "PrivateJet";
 }
 
+size_t PrivateJet::getCapacity() const {
+	return CAPACITY;
+}
+
 std::unique_ptr<Airplane> PrivateJet::clone() const {
 	return std::make_unique<PrivateJet>(this->model);
 }
