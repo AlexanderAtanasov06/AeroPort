@@ -33,6 +33,10 @@ void Passenger::addTicket(std::shared_ptr<Ticket> ticket) {
 	tickets.push_back(ticket);
 }
 
+void Passenger::removeTicket(const std::shared_ptr<Ticket>& ticket) {
+	std::erase(tickets, ticket);
+}
+
 void Passenger::removeTicketsWithFlightID(const std::string& flightID) {
 	std::erase_if(tickets, [&flightID](const auto& ticket) {
 		return flightID == ticket->getFlightID();

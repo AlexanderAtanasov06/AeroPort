@@ -32,6 +32,30 @@ std::unique_ptr<CommandVisitor> CommandFactory::create(const std::string& line) 
 		iss >> id;
 		return std::make_unique<CancelFlightCommand>(id);
 	}
+	if (type == "upgrade-ticket")
+	{
+		std::string flightID, newTicketType;
+		if (!(iss >> flightID >> newTicketType))
+		{
+			throw std::invalid_argument("[Error] Correct format is: upgrade-ticket <flight ID>, <new ticket type>");
+		}
+		return std::make_unique<UpgradeTicketCommand>(flightID, newTicketType);
+	}
+	if (type == "add-baggage") {
+		std::string flightID;
+		double weight;
+		if (!(iss >> flightID >> weight)) {
+			throw std::invalid_argument("[Error] Invalid arguments! Correct format is: add-baggage <flight ID> <weight>");
+		}
+		return std::make_unique<AddBaggageCommand>(flightID, weight);
+	}
+	if (type == "cancel-ticket") {
+		std::string flightID;
+		if (!(iss >> flightID)) {
+			throw std::invalid_argument("[Error] Correct format is: cancel-ticket <flight id>");
+		}
+		return std::make_unique<CancelTicketCommand>(flightID);
+	}
 
 	if (type == "build-runway") {
 		return std::make_unique<BuildRunwayCommand>(line);
@@ -79,15 +103,6 @@ std::unique_ptr<CommandVisitor> CommandFactory::create(const std::string& line) 
 		return std::make_unique<RetrieveFromHangarCommand>(id);
 	}
 
+
 	return nullptr;
 }
-
-//std::vector<std::string> CommandFactory::splitArguments(const std::string& line) {
-//	std::vector<std::string> v;
-//	std::istringstream iss(line);
-//	std::string word;
-//	while (iss >> word) {
-//		v.push_back(word);
-//	}
-//	return v;
-//}

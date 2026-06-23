@@ -65,3 +65,7 @@ void Flight::addTicket(std::shared_ptr<Ticket> ticket) {
     soldTickets.push_back(ticket);
 }
 
+void Flight::removeTicket(const std::shared_ptr<Ticket>& ticket) {
+    std::erase(soldTickets, ticket);
+}
+

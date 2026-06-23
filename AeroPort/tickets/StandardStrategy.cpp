@@ -15,3 +15,8 @@ bool StandardStrategy::isRefundable() const {
 double StandardStrategy::getFreeBaggage() const {
     return 0;
 }
+
+std::string StandardStrategy::getName() const
+{
+    return "Standard";
+}

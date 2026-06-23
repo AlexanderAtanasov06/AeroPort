@@ -17,7 +17,7 @@ void CloneAircraftCommand::visit(Dispatcher& d) {
 
 void CloneAircraftCommand::visit(AirportAuthority& a) {
     Engine& e = Engine::getInstance();
-
+    
     auto airline = e.findAirlineByAircraftID(airplaneID);
     if (!airline) {
         std::println("[Error] No aircraft with ID {} found in any airline!", airplaneID);

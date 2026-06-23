@@ -64,6 +64,10 @@ void Runway::setStatus(Status status) {
 	this->runwayStatus = status;
 }
 
+void Runway::setAssignedPlane(std::shared_ptr<Airplane> airplane) {
+	this->plane = airplane;
+}
+
 void Runway::clearAssignedPlane() {
 	plane.reset();
 }

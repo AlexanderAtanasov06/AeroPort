@@ -37,6 +37,7 @@ public:
 	std::shared_ptr<Airplane> getAssignedPlane() const;
 
 	void setStatus(Status status);
+	void setAssignedPlane(std::shared_ptr<Airplane> airplane);
 	void clearAssignedPlane();
 private:
 	std::string runwayID;

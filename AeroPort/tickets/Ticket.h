@@ -38,4 +38,5 @@ public:
     std::string getFlightID() const;
     double getPrice() const;
     double getBaggageWeight() const;
+    std::string getTicketTypeStr() const;
 };

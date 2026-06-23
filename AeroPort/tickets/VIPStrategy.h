@@ -7,4 +7,6 @@ public:
     double getRefundAmount(double paidPrice) const override;
     bool isRefundable() const override;
     double getFreeBaggage() const override;
+
+    std::string getName() const override;
 };

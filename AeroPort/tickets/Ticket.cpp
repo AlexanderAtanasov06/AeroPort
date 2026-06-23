@@ -56,3 +56,8 @@ double Ticket::getPrice() const {
 double Ticket::getBaggageWeight() const {
     return baggageWeight;
 }
+
+std::string Ticket::getTicketTypeStr() const
+{
+    return strategy->getName();
+}

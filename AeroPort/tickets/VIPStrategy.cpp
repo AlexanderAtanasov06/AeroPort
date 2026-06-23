@@ -15,3 +15,8 @@ bool VIPStrategy::isRefundable() const {
 double VIPStrategy::getFreeBaggage() const {
     return 20;
 }
+
+std::string VIPStrategy::getName() const
+{
+    return "VIP";
+}

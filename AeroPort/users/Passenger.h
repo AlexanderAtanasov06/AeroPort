@@ -18,6 +18,7 @@ public:
 	void deductFunds(double amount);
 
 	void addTicket(std::shared_ptr<Ticket> ticket);
+	void removeTicket(const std::shared_ptr<Ticket>& ticket);
 	void removeTicketsWithFlightID(const std::string& flightID);
 
 	const std::vector<std::shared_ptr<Ticket>>& getTickets() const;

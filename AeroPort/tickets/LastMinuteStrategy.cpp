@@ -15,3 +15,8 @@ bool LastMinuteStrategy::isRefundable() const {
 double LastMinuteStrategy::getFreeBaggage() const {
     return 0;
 }
+
+std::string LastMinuteStrategy::getName() const
+{
+    return "LastMinute";
+}

@@ -29,6 +29,7 @@ public:
 	void setAssignedRunway(std::shared_ptr<Runway> runway);
 
 	void addTicket(std::shared_ptr<Ticket> ticket);
+	void removeTicket(const std::shared_ptr<Ticket>& ticket);
 
 	std::string getFlightID() const;
 	std::weak_ptr<Airplane> getAirplane() const;
