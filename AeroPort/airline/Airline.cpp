@@ -41,7 +41,17 @@ double Airline::getBalance() const {
 }
 
 void Airline::deductBalance(double amount) {
+	if (amount >= balance) {
+		throw std::logic_error("[Error] Deduction amount is higher than the airline's balance!");
+	}
 	balance -= amount;
+}
+
+void Airline::addBalance(double amount) {
+	if (amount <= 0) {
+		throw std::logic_error("[Error] Addition amount must be a positive number!");
+	}
+	balance += amount;
 }
 
 void Airline::addAirplane(std::shared_ptr<Airplane> plane) {

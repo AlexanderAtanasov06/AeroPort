@@ -6,8 +6,18 @@ Airplane::Airplane(const std::string& model) : ID(nextID), model(model) {
 	nextID++;
 }
 
-void Airplane::restoreHealth() {
+void Airplane::repair() {
 	health = 100;
+}
+
+void Airplane::increaseHealth(double health) {
+	if (health <=0 ) {
+		throw std::invalid_argument("[Error] Health must be a positive number!");
+	}
+	this->health += health;
+	if (this->health >= 100) {
+		this->health = 100;
+	}
 }
 
 bool Airplane::isHealthy() const

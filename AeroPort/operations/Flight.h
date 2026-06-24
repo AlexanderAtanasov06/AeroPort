@@ -21,7 +21,7 @@ private:
 	double baseTicketPrice;
 	std::vector<std::shared_ptr<Ticket>> soldTickets;
 	Status status;
-	std::shared_ptr<Runway> assignedRunway;
+	std::weak_ptr<Runway> assignedRunway;
 public:
 	Flight(const std::string& flightID, std::shared_ptr<Airplane> plane, const std::string destination, double baseTicketPrice);
 
@@ -38,7 +38,7 @@ public:
 	const std::vector<std::shared_ptr<Ticket>>& getSoldTickets() const;
 	Status getStatus() const;
 	std::string getStatusStr() const;
-	std::shared_ptr<Runway> getAssignedRunway() const;
+	std::weak_ptr<Runway> getAssignedRunway() const;
 
 	bool hasAvailableSeats() const;
 };

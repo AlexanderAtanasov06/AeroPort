@@ -57,7 +57,7 @@ bool Runway::isOccupied() const {
 }
 
 std::weak_ptr<Airplane> Runway::getAssignedPlane() const {
-	return plane.lock();
+	return plane;
 }
 
 void Runway::setStatus(Status status) {

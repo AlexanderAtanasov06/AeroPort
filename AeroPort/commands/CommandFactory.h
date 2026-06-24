@@ -20,6 +20,10 @@
 #include "UpgradeTicketCommand.h"
 #include "AddBaggageCommand.h"
 #include "CancelTicketCommand.h"
+#include "AssignRunwayCommand.h"
+#include "UndoCommand.h"
+#include "FreeRunwayCommand.h"
+#include "DelayFlightCommand.h"
 
 class CommandFactory {
 public:

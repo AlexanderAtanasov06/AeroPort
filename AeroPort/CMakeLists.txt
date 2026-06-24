@@ -16,6 +16,7 @@ file(GLOB OPERATIONS_SOURCES CONFIGURE_DEPENDS "operations/*.cpp" "operations/*.
 file(GLOB AIRLINE_SOURCES CONFIGURE_DEPENDS "airline/*.cpp" "airline/*.h")
 file(GLOB ADMIN_COMMANDS_SOURCES CONFIGURE_DEPENDS "commands/admin/*.cpp" "commands/admin/*.h")
 file(GLOB PASSENGER_COMMANDS_SOURCES CONFIGURE_DEPENDS "commands/passenger/*.cpp" "commands/passenger/*.h")
+file(GLOB DISPATCHER_COMMANDS_SOURCES CONFIGURE_DEPENDS "commands/dispatcher/*.cpp" "commands/dispatcher/*.h")
 
 add_executable(${PROJECT_NAME} 
 ${SOURCES} 
@@ -30,6 +31,7 @@ ${OPERATIONS_SOURCES}
 ${AIRLINE_SOURCES}
 ${ADMIN_COMMANDS_SOURCES}
 ${PASSENGER_COMMANDS_SOURCES}
+${DISPATCHER_COMMANDS_SOURCES}
 )
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/include")
@@ -40,6 +42,7 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/airplanes")
     target_include_directories(${PROJECT_NAME} PRIVATE 
     commands/passenger 
     commands/admin 
+    commands/dispatcher
     airline 
     operations 
     airplanes 

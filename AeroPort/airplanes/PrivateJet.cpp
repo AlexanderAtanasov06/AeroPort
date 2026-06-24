@@ -18,13 +18,14 @@ bool PrivateJet::requiresHeavyDuty() const {
 	return false;
 }
 
-void PrivateJet::decreaseHealthAfterFlight() {
+size_t PrivateJet::decreaseHealthAfterFlight() {
 	if (health < HEALTH_DROP) {
 		health = 0;
 	}
 	else {
 		health -= HEALTH_DROP;
 	}
+	return HEALTH_DROP;
 }
 
 std::string PrivateJet::getType() const {
@@ -37,5 +38,9 @@ size_t PrivateJet::getCapacity() const {
 
 std::unique_ptr<Airplane> PrivateJet::clone() const {
 	return std::make_unique<PrivateJet>(this->model);
+}
+
+size_t PrivateJet::getAirportTax() const {
+	return AIRPORT_TAX_IN_EUR;
 }
 

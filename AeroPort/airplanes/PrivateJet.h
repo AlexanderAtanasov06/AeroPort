@@ -14,9 +14,11 @@ public:
 	size_t getRequiredRunwayLength() const override;
 	bool requiresVIP() const override;
 	bool requiresHeavyDuty() const override;
-	void decreaseHealthAfterFlight() override;
+	size_t decreaseHealthAfterFlight() override;
 	std::string getType() const override;
 	size_t getCapacity() const override;
+	size_t getAirportTax() const override;
 
 	std::unique_ptr<Airplane> clone() const override;
+
 };

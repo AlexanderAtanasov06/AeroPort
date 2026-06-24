@@ -25,7 +25,7 @@ void RetrieveFromHangarCommand::visit(AirportAuthority& a) {
 	}
 
 	auto aircraft = hangar->removeAircraft(aircraftID);
-	aircraft->restoreHealth();
+	aircraft->repair();
 
 	std::println("[Success] Aircraft ID: {} retrieved from Hangar {}. Health restored to 100%.",
 		aircraftID, hangar->getHangarID());

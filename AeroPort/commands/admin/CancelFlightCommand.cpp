@@ -48,9 +48,9 @@ void CancelFlightCommand::visit(AirportAuthority& a) {
 
 	if (flight->getStatus() == Flight::Status::BOARDING) {
 		auto runway = flight->getAssignedRunway();
-		if (runway) {
-			runway->setStatus(Runway::Status::FREE);
-			runway->clearAssignedPlane();
+		if (runway.lock()) {
+			runway.lock()->setStatus(Runway::Status::FREE);
+			runway.lock()->clearAssignedPlane();
 		}
 	}
 

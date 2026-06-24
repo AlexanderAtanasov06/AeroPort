@@ -28,7 +28,7 @@ void CloseRunwayCommand::visit(AirportAuthority& a) {
 
 	for (const auto& airline : e.getAirlines()) {
 		for (const auto& flight : airline->getFlights()) {
-			if (flight->getAssignedRunway()->getRunwayID() == runwayID) {
+			if (flight->getAssignedRunway().lock()->getRunwayID() == runwayID) {
 				flight->setStatus(Flight::Status::SCHEDULED);
 				std::println("Flight {} status changed to scheduled", flight->getFlightID());
 			}

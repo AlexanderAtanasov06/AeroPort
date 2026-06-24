@@ -17,6 +17,7 @@ class Engine {
 private:
 	Engine();
 	bool isRunning;
+	double airportBalance;
 	std::weak_ptr<User> currentUser;
 	std::vector<std::shared_ptr<Runway>> runways;
 	std::vector<std::shared_ptr<User>> users;
@@ -49,6 +50,10 @@ public:
 
 	const std::vector<std::shared_ptr<Runway>>& getRunways() const;
 	const std::vector<std::shared_ptr<Airline>>& getAirlines() const;
+
+	double getAirportBalance() const;
+	void addAirportBalance(double amount);
+	void deductAirportBalance(double amount);
 
 	bool isAircraftInHangar(size_t aircraftID) const;
 	bool isAircraftOnRunway(size_t aircraftID) const;

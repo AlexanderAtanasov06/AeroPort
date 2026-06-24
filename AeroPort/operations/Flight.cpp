@@ -1,7 +1,7 @@
 #include "Flight.h"
 
 Flight::Flight(const std::string& flightID, std::shared_ptr<Airplane> plane, const std::string destination, double baseTicketPrice)
-	: flightID(flightID), plane(plane), destination(destination), baseTicketPrice(baseTicketPrice), status(Status::SCHEDULED), assignedRunway(nullptr) {
+	: flightID(flightID), plane(plane), destination(destination), baseTicketPrice(baseTicketPrice), status(Status::SCHEDULED) {
 }
 
 std::string Flight::getFlightID() const {
@@ -29,28 +29,28 @@ Flight::Status Flight::getStatus() const {
 }
 
 std::string Flight::getStatusStr() const {
-    switch (status) {
-    case Status::SCHEDULED:
-        return "Scheduled";
-    case Status::BOARDING:
-        return "Boarding";
-    case Status::DELAYED:
-        return "Delayed";
-    case Status::DEPARTED:
-        return "Departed";
-    case Status::CANCELLED:
-        return "Cancelled";
-    default:
-        return "Unknown";
-    }
+	switch (status) {
+	case Status::SCHEDULED:
+		return "Scheduled";
+	case Status::BOARDING:
+		return "Boarding";
+	case Status::DELAYED:
+		return "Delayed";
+	case Status::DEPARTED:
+		return "Departed";
+	case Status::CANCELLED:
+		return "Cancelled";
+	default:
+		return "Unknown";
+	}
 }
 
-std::shared_ptr<Runway> Flight::getAssignedRunway() const {
+std::weak_ptr<Runway> Flight::getAssignedRunway() const {
 	return assignedRunway;
 }
 
 bool Flight::hasAvailableSeats() const {
-    return plane.lock()->getCapacity() > soldTickets.size();
+	return plane.lock()->getCapacity() > soldTickets.size();
 }
 
 void Flight::setStatus(Status status) {
@@ -62,10 +62,10 @@ void Flight::setAssignedRunway(std::shared_ptr<Runway> runway) {
 }
 
 void Flight::addTicket(std::shared_ptr<Ticket> ticket) {
-    soldTickets.push_back(ticket);
+	soldTickets.push_back(ticket);
 }
 
 void Flight::removeTicket(const std::shared_ptr<Ticket>& ticket) {
-    std::erase(soldTickets, ticket);
+	std::erase(soldTickets, ticket);
 }
 

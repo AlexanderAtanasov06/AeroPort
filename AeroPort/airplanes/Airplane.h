@@ -14,13 +14,15 @@ public:
 	virtual size_t getRequiredRunwayLength() const = 0;
 	virtual bool requiresVIP() const = 0;
 	virtual bool requiresHeavyDuty() const = 0;
-	virtual void decreaseHealthAfterFlight() = 0;
+	virtual size_t decreaseHealthAfterFlight() = 0;
 	virtual std::string getType() const = 0;
 	virtual size_t getCapacity() const = 0;
+	virtual size_t getAirportTax() const = 0;
 
 	virtual std::unique_ptr<Airplane> clone() const = 0;
 
-	void restoreHealth();
+	void repair();
+	void increaseHealth(double health);
 
 	bool isHealthy() const;
 	size_t getID() const;

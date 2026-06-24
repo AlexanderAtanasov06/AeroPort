@@ -18,13 +18,14 @@ bool CargoPlane::requiresHeavyDuty() const {
 	return true;
 }
 
-void CargoPlane::decreaseHealthAfterFlight() {
+size_t CargoPlane::decreaseHealthAfterFlight() {
 	if (health < HEALTH_DROP) {
 		health = 0;
 	}
 	else {
 		health -= HEALTH_DROP;
 	}
+	return HEALTH_DROP;
 }
 
 std::string CargoPlane::getType() const {
@@ -37,4 +38,8 @@ size_t CargoPlane::getCapacity() const {
 
 std::unique_ptr<Airplane> CargoPlane::clone() const {
 	return std::make_unique<CargoPlane>(this->model, this->loadCapacity);
+}
+
+size_t CargoPlane::getAirportTax() const {
+	return AIRPORT_TAX_PER_TONNE_IN_EUR;
 }

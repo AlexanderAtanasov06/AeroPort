@@ -21,3 +21,17 @@ void Dispatcher::accept(UserVisitor& visitor) {
 void Dispatcher::viewProfile() const {
 	std::println("[Profile] User: {} | Role: Air Traffic Control", name);
 }
+
+void Dispatcher::addUndoAction(std::unique_ptr<IUndoAction> action) {
+	undoStack.push_back(std::move(action));
+}
+
+void Dispatcher::undoLastAction() {
+	if (undoStack.empty()) {
+		std::println("[Error] No actions to undo!");
+		return;
+	}
+	auto action = std::move(undoStack.back());
+	undoStack.pop_back();
+	action->undo();
+}

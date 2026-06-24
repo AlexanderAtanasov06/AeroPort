@@ -5,6 +5,31 @@ std::unique_ptr<CommandVisitor> CommandFactory::create(const std::string& line) 
 	std::string type;
 	iss >> type;
 
+	if (type == "undo") {
+		return std::make_unique<UndoCommand>();
+	}
+	if (type == "assign-runway") {
+		std::string flightID, runwayID;
+		if (!(iss >> flightID >> runwayID)) {
+			throw std::invalid_argument("[Error] Correct format: assign-runway <flight ID> <runway ID>");
+		}
+		return std::make_unique<AssignRunwayCommand>(flightID, runwayID);
+	}
+	if (type == "free-runway") {
+		std::string runwayID;
+		if (!(iss >> runwayID)) {
+			throw std::invalid_argument("[Error] Correct format: free-runway <runway_id>");
+		}
+		return std::make_unique<FreeRunwayCommand>(runwayID);
+	}
+	if (type == "delay-flight") {
+		std::string flightID;
+		if (!(iss >> flightID)) {
+			throw std::invalid_argument("[Error] Correct format: delay-flight <flight_id>");
+		}
+		return std::make_unique<DelayFlightCommand>(flightID);
+	}
+
 	if (type == "add-funds") {
 		double funds;
 		iss >> funds;
@@ -37,7 +62,7 @@ std::unique_ptr<CommandVisitor> CommandFactory::create(const std::string& line) 
 		std::string flightID, newTicketType;
 		if (!(iss >> flightID >> newTicketType))
 		{
-			throw std::invalid_argument("[Error] Correct format is: upgrade-ticket <flight ID>, <new ticket type>");
+			throw std::invalid_argument("[Error] Correct format is: upgrade-ticket <flight ID> <new ticket type>");
 		}
 		return std::make_unique<UpgradeTicketCommand>(flightID, newTicketType);
 	}

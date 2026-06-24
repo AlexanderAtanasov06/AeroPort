@@ -40,6 +40,9 @@ void ScheduleFlightCommand::visit(AirportAuthority& a) {
     }
 
     std::shared_ptr<Airplane> airplane = ownerAirline->findAirplane(aircraftID);
+    if (!airplane) {
+
+    }
 
     if (!airplane->isHealthy()) {
         std::println("[Error] Aircraft ID {} has insufficient health ({}%). Send it to a hangar first!", aircraftID, airplane->getHealth());

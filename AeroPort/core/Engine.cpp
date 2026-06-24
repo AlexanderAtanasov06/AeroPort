@@ -231,6 +231,24 @@ const std::vector<std::shared_ptr<Airline>>& Engine::getAirlines() const {
 	return airlines;
 }
 
+double Engine::getAirportBalance() const {
+	return airportBalance;
+}
+
+void Engine::addAirportBalance(double amount) {
+	if (amount <= 0) {
+		throw std::logic_error("[Error] Addition amount must be a positive number!");
+	}
+	airportBalance += amount;
+}
+
+void Engine::deductAirportBalance(double amount) {
+	if (amount >= airportBalance) {
+		throw std::logic_error("[Error] Deduction amount is higher than the airline's balance!");
+	}
+	airportBalance -= amount;
+}
+
 bool Engine::isAircraftInHangar(size_t aircraftID) const {
 	for (const auto& hangar : hangars) {
 		for (const auto& plane : hangar->getPlanes()) {
@@ -242,7 +260,11 @@ bool Engine::isAircraftInHangar(size_t aircraftID) const {
 
 bool Engine::isAircraftOnRunway(size_t aircraftID) const {
 	for (const auto& runway : runways) {
-		if (runway->getAssignedPlane().lock()->getID() == aircraftID) return true;
+		if (auto p = runway->getAssignedPlane().lock()) {
+			if (p->getID() == aircraftID) {
+				return true;
+			}
+		}
 	}
 	return false;
 }

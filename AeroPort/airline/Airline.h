@@ -20,7 +20,9 @@ public:
 
 	const std::string& getName() const;
 	double getBalance() const;
+
 	void deductBalance(double amount);
+	void addBalance(double amount);
 
 	void addAirplane(std::shared_ptr<Airplane> plane);
 	void addFlight(std::shared_ptr<Flight> flight);

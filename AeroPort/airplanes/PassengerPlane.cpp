@@ -17,17 +17,22 @@ bool PassengerPlane::requiresHeavyDuty() const {
 	return false;
 }
 
-void PassengerPlane::decreaseHealthAfterFlight() {
+size_t PassengerPlane::decreaseHealthAfterFlight() {
 	if (health < HEALTH_DROP) {
 		health = 0;
 	}
 	else {
 		health -= HEALTH_DROP;
 	}
+	return HEALTH_DROP;
 }
 
 std::unique_ptr<Airplane> PassengerPlane::clone() const {
 	return std::make_unique<PassengerPlane>(this->model, this->capacity);
+}
+
+size_t PassengerPlane::getAirportTax() const {
+	return AIRPORT_TAX_OF_SOLD_TICKETS_IN_PERCANTAGE;
 }
 
 std::string PassengerPlane::getType() const {
