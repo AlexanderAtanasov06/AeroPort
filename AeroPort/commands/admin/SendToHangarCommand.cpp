@@ -43,20 +43,20 @@ void SendToHangarCommand::visit(AirportAuthority& a) {
         return;
     }
 
-    if (hangar->isFull()) {
+    if (hangar->get().isFull()) {
         std::println("[Error] Hangar {} is at maximum capacity ({}/{} slots occupied)!",
-            hangarID, hangar->getCurrentCount(), hangar->getCapacity());
+            hangarID, hangar->get().getCurrentCount(), hangar->get().getCapacity());
         return;
     }
 
-    double fee = hangar->getRepairFee();
+    double fee = hangar->get().getRepairFee();
     if (airline->getBalance() < fee) {
         std::println("[Error] Insufficient funds! {} balance: {:.2f} EUR. Repair fee: {:.2f} EUR.",
             airline->getName(), airline->getBalance(), fee);
         return;
     }
 
-    hangar->addAircraft(aircraft);
+    hangar->get().addAircraft(aircraft);
     airline->deductBalance(fee);
 
     std::println("[Success] Aircraft ID: {} admitted to Hangar {}. {:.2f} EUR deducted from {} balance.",

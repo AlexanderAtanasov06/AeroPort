@@ -48,8 +48,8 @@ void BuildRunwayCommand::visit(AirportAuthority& a) {
 			return;
 		}
 	}
-	std::shared_ptr<Runway> runway = std::make_shared<Runway>(builder.build());
-	e.addRunway(runway);
+	std::unique_ptr<Runway> runway = std::make_unique<Runway>(builder.build());
+	e.addRunway(std::move(runway));
 
 	std::print("[System] Runway {} ({}m", id, length);
 	if (!runway->isWithILS() && !runway->isWithHeavyDuty() && !runway->isWithVIP()) {

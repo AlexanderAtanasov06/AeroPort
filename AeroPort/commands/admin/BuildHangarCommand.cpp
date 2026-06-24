@@ -27,7 +27,7 @@ void BuildHangarCommand::visit(AirportAuthority& a) {
 		return;
 	}
 
-	std::shared_ptr<Hangar> hangar = std::make_shared<Hangar>(id, capacity, fee);
-	e.addHangar(hangar);
+	std::unique_ptr<Hangar> hangar = std::make_unique<Hangar>(id, capacity, fee);
+	e.addHangar(std::move(hangar));
 	std::println("[System] Hangar {} built successfully (Capacity: {}, Repair Fee: {:.2f} EUR)", id, capacity, fee);
 }

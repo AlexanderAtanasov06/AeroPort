@@ -11,18 +11,20 @@
 #include <memory>
 #include <vector>
 #include <print>
+#include <optional>
+#include <functional>
 #include <sstream>
 
-class Engine : public WeatherSubject{
+class Engine : public WeatherSubject {
 private:
 	Engine();
 	bool isRunning;
 	std::vector<std::string> commandHistory;
 	double airportBalance;
 	std::weak_ptr<User> currentUser;
-	std::vector<std::shared_ptr<Runway>> runways;
 	std::vector<std::shared_ptr<User>> users;
-	std::vector<std::shared_ptr<Hangar>> hangars;
+	std::vector<std::unique_ptr<Hangar>> hangars;
+	std::vector<std::shared_ptr<Runway>> runways;
 	std::vector<std::shared_ptr<Airline>> airlines;
 
 	std::vector<std::shared_ptr<IWeatherObserver>> observers;
@@ -32,7 +34,7 @@ private:
 	void proccessLoginCommand(std::vector<std::string> args);
 	void proccessRegisterCommand(std::vector<std::string> args);
 	void processCommand(const std::string& line);
-	
+
 public:
 	static Engine& getInstance();
 	Engine(const Engine&) = delete;
@@ -41,14 +43,14 @@ public:
 	void run();
 
 	void addRunway(std::shared_ptr<Runway> runway);
-	void addHangar(std::shared_ptr<Hangar> hangar);
+	void addHangar(std::unique_ptr<Hangar> hangar);
 	void addAirline(std::shared_ptr<Airline> airline);
 
 	std::shared_ptr<Airline> findAirlineByAircraftID(size_t id) const;
-	std::shared_ptr<Hangar> findHangarByAircraftID(size_t id) const;
+	std::optional<std::reference_wrapper<Hangar>> findHangarByAircraftID(size_t id) const;
 	std::shared_ptr<User> findUserByName(const std::string& name) const;
 	std::shared_ptr<Runway> findRunway(const std::string& id) const;
-	std::shared_ptr<Hangar> findHangar(const std::string& id) const;
+	std::optional<std::reference_wrapper<Hangar>> findHangar(const std::string& id) const;
 	std::shared_ptr<Airline> findAirline(const std::string& name) const;
 
 	const std::vector<std::shared_ptr<Runway>>& getRunways() const;
