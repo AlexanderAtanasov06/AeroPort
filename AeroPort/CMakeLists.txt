@@ -11,11 +11,11 @@ file(GLOB TICKET_SOURCES CONFIGURE_DEPENDS "tickets/*.cpp" "tickets/*.h")
 file(GLOB USER_SOURCES CONFIGURE_DEPENDS "users/*.cpp" "users/*.h")
 file(GLOB CORE_SOURCES CONFIGURE_DEPENDS "core/*.cpp" "core/*.h")
 file(GLOB INFRASTRUCTURE_SOURCES CONFIGURE_DEPENDS "infrastructure/*.cpp" "infrastructure/*.h")
-file(GLOB VISITOR_SOURCES CONFIGURE_DEPENDS "visitor/*.cpp" "visitor/*.h")
+file(GLOB VISITOR_SOURCES CONFIGURE_DEPENDS "commands/*.cpp" "commands/*.h")
 file(GLOB OPERATIONS_SOURCES CONFIGURE_DEPENDS "operations/*.cpp" "operations/*.h")
 file(GLOB AIRLINE_SOURCES CONFIGURE_DEPENDS "airline/*.cpp" "airline/*.h")
-file(GLOB ADMIN_COMMANDS_SOURCES CONFIGURE_DEPENDS "visitor/admin-commands/*.cpp" "visitor/admin-commands/*.h")
-file(GLOB PASSENGER_COMMANDS_SOURCES CONFIGURE_DEPENDS "visitor/passenger-commands/*.cpp" "visitor/passenger-commands/*.h")
+file(GLOB ADMIN_COMMANDS_SOURCES CONFIGURE_DEPENDS "commands/admin/*.cpp" "commands/admin/*.h")
+file(GLOB PASSENGER_COMMANDS_SOURCES CONFIGURE_DEPENDS "commands/passenger/*.cpp" "commands/passenger/*.h")
 
 add_executable(${PROJECT_NAME} 
 ${SOURCES} 
@@ -37,5 +37,15 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/include")
 endif()
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/airplanes")
-    target_include_directories(${PROJECT_NAME} PRIVATE visitor/passenger-commands visitor/admin-commands airline operations airplanes tickets users core infrastructure visitor)
+    target_include_directories(${PROJECT_NAME} PRIVATE 
+    commands/passenger 
+    commands/admin 
+    airline 
+    operations 
+    airplanes 
+    tickets 
+    users 
+    core 
+    infrastructure 
+    commands)
 endif()
