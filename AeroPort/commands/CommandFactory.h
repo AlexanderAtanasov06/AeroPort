@@ -24,7 +24,14 @@
 #include "UndoCommand.h"
 #include "FreeRunwayCommand.h"
 #include "SetWeatherCommand.h"
+#include "AirportReportCommand.h"
 #include "DelayFlightCommand.h"
+#include "AuditAirlineCommand.h"
+#include "ListAirspaceCommand.h"
+#include "MyTicketsCommand.h"
+#include "ListRunwaysCommand.h"
+#include "ListFleetCommand.h"
+#include "FlightRevenueCommand.h"
 
 class CommandFactory {
 public:

@@ -306,6 +306,7 @@ void Engine::loadState() {
 	std::string line;
 	while (std::getline(file, line)) {
 		processCommand(line);
+		commandHistory.push_back(line);
 		count++;
 	}
 
@@ -321,7 +322,7 @@ void Engine::loadState() {
 }
 
 void Engine::saveState() {
-	std::ofstream file("aeroport_data.bin", std::ios::app);
+	std::ofstream file("aeroport_data.bin");
 	if (!file) {
 		throw std::runtime_error("[Error] Cannot save current state!");
 	}
@@ -331,7 +332,6 @@ void Engine::saveState() {
 		}
 	}
 	file << "logout" << "\n";
-	commandHistory.clear();
 	std::println("[System] AeroPort application state successfully serialized and saved to 'aeroport_data.bin'");
 }
 

@@ -123,7 +123,7 @@ void FreeRunwayCommand::visit(Dispatcher& d) {
 
 	airlineRevenue -= airportRevenue;
 	if (airlineRevenue < 0) {
-		activeAirline->deductBalance(-airlineRevenue);
+		activeAirline->deductBalance(airlineRevenue);
 	}
 	else {
 		activeAirline->addBalance(airlineRevenue);

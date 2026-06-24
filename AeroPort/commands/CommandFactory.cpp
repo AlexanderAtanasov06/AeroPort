@@ -36,7 +36,9 @@ std::unique_ptr<CommandVisitor> CommandFactory::create(const std::string& line) 
 			}
 			return std::make_unique<DelayFlightCommand>(flightID);
 		}},
-
+		{"list-runways", [](std::istringstream&, const std::string&) {
+			return std::make_unique<ListRunwaysCommand>();
+		}},
 		{"add-funds", [](std::istringstream& iss, const std::string&) {
 			double funds;
 			iss >> funds;
@@ -127,14 +129,45 @@ std::unique_ptr<CommandVisitor> CommandFactory::create(const std::string& line) 
 			}
 			return std::make_unique<SendToHangarCommand>(id, hID);
 		}},
+		{ "airport-report", [](std::istringstream&, const std::string&) {
+			return std::make_unique<AirportReportCommand>();
+		}},
 		{"retrieve-from-hangar", [](std::istringstream& iss, const std::string&) {
 			size_t id;
 			iss >> id;
 			return std::make_unique<RetrieveFromHangarCommand>(id);
 		}},
+		{ "audit-airline", [](std::istringstream& iss, const std::string&) {
+			std::string airlineName;
+			if (!(iss >> airlineName)) {
+			throw std::invalid_argument("[Error] Correct format is: audit-airline <airline name>");
+		}
+			return std::make_unique<AuditAirlineCommand>(airlineName);
+		}},
+		{ "my-tickets", [](std::istringstream&, const std::string&) {
+			return std::make_unique<MyTicketsCommand>();
+		}},
+		{ "list-airspace", [](std::istringstream&, const std::string&) {
+			return std::make_unique<ListAirspaceCommand>();
+		}},
+		{ "list-fleet", [](std::istringstream& iss, const std::string&) {
+			std::string airlineName;
+			if (!(iss >> airlineName)) {
+			throw std::invalid_argument("[Error] Correct format is: list-fleet <airline name>");
+		}
+			return std::make_unique<ListFleetCommand>(airlineName);
+		}},
+		{ "flight-revenue", [](std::istringstream& iss, const std::string&) {
+			std::string flightID;
+			if (!(iss >> flightID)) {
+			throw std::invalid_argument("[Error] Correct format is: flight-revenue <flight id>");
+		}
+			return std::make_unique<FlightRevenueCommand>(flightID);
+		}},
 		{ "set-weather", [](std::istringstream& iss, const std::string& line) {
 			return std::make_unique<SetWeatherCommand>(line);
 		}}
+
 	};
 
 	auto it = commandRegistry.find(type);
