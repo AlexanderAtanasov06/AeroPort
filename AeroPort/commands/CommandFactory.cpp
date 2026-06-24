@@ -131,6 +131,9 @@ std::unique_ptr<CommandVisitor> CommandFactory::create(const std::string& line) 
 			size_t id;
 			iss >> id;
 			return std::make_unique<RetrieveFromHangarCommand>(id);
+		}},
+		{ "set-weather", [](std::istringstream& iss, const std::string& line) {
+			return std::make_unique<SetWeatherCommand>(line);
 		}}
 	};
 

@@ -1,19 +1,19 @@
 #pragma once
 #include "CommandFactory.h"
+#include "WeatherSubject.h"
 #include "User.h"
 #include "Airline.h"
 #include "Passenger.h"
 #include "Dispatcher.h"
 #include "AirportAuthority.h"
 #include "Hangar.h"
-#include "Flight.h"
 #include <string>
 #include <memory>
 #include <vector>
 #include <print>
 #include <sstream>
 
-class Engine {
+class Engine : public WeatherSubject{
 private:
 	Engine();
 	bool isRunning;
@@ -24,6 +24,8 @@ private:
 	std::vector<std::shared_ptr<User>> users;
 	std::vector<std::shared_ptr<Hangar>> hangars;
 	std::vector<std::shared_ptr<Airline>> airlines;
+
+	std::vector<std::shared_ptr<IWeatherObserver>> observers;
 
 	std::vector<std::string> splitArguments(const std::string& line);
 	void proccessLogoutCommand(std::vector<std::string> args);
@@ -58,6 +60,9 @@ public:
 
 	bool isAircraftInHangar(size_t aircraftID) const;
 	bool isAircraftOnRunway(size_t aircraftID) const;
+
+	void addObserver(std::shared_ptr<IWeatherObserver> observer) override;
+	void notifyObservers(const std::string& weather) override;
 
 	void loadState();
 	void saveState();

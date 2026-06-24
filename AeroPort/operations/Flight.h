@@ -4,8 +4,9 @@
 #include "Airplane.h"
 #include "Ticket.h"
 #include "Runway.h"
+#include "IWeatherObserver.h"
 
-class Flight {
+class Flight : public IWeatherObserver {
 public:
 	enum class Status {
 		SCHEDULED,
@@ -41,4 +42,6 @@ public:
 	std::weak_ptr<Runway> getAssignedRunway() const;
 
 	bool hasAvailableSeats() const;
+
+	void onWeatherChange(const std::string& newWeather) override;
 };

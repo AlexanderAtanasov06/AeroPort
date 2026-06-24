@@ -56,6 +56,10 @@ bool Runway::isOccupied() const {
 	return !plane.expired();
 }
 
+Runway::Status Runway::getStatus() const {
+	return runwayStatus;
+}
+
 std::weak_ptr<Airplane> Runway::getAssignedPlane() const {
 	return plane;
 }

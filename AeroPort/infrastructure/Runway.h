@@ -34,6 +34,7 @@ public:
 	bool isWithHeavyDuty() const;
 	bool isWithVIP() const;
 	bool isOccupied() const;
+	Status getStatus() const;
 	std::weak_ptr<Airplane> getAssignedPlane() const;
 
 	void setStatus(Status status);

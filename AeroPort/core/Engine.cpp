@@ -281,6 +281,16 @@ bool Engine::isAircraftOnRunway(size_t aircraftID) const {
 	return false;
 }
 
+void Engine::addObserver(std::shared_ptr<IWeatherObserver> observer) {
+	observers.push_back(observer);
+}
+
+void Engine::notifyObservers(const std::string& weather) {
+	for (const auto& obs : observers) {
+		obs->onWeatherChange(weather);
+	}
+}
+
 void Engine::loadState() {
 	fflush(stdout);
 	int originalStdout = _dup(_fileno(stdout));

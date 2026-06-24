@@ -23,6 +23,7 @@
 #include "AssignRunwayCommand.h"
 #include "UndoCommand.h"
 #include "FreeRunwayCommand.h"
+#include "SetWeatherCommand.h"
 #include "DelayFlightCommand.h"
 
 class CommandFactory {
