@@ -61,6 +61,7 @@ void ScheduleFlightCommand::visit(AirportAuthority& a) {
 
     std::shared_ptr<Flight> flight = std::make_shared<Flight>(flightID, airplane, destination, basePrice);
     ownerAirline->addFlight(flight);
+    e.addObserver(flight);
 
     std::println("[System] {} Flight {} to {} is now Scheduled.", airplane->getType(), flightID, destination);
 }
