@@ -1,8 +1,11 @@
+#include <fstream>
+#include <io.h>
+#include <stdio.h>
 #include "Engine.h"
 #include <iostream>
 #include <print>
 
-Engine::Engine() : isRunning(true) {
+Engine::Engine() : isRunning(true), airportBalance(0) {
 	AirportAuthority& a = AirportAuthority::getInstance();
 	auto admin = std::make_shared<AirportAuthority>(a);
 	users.push_back(admin);
@@ -22,6 +25,7 @@ void Engine::run() {
 		if (input == "exit") break;
 		try {
 			processCommand(input);
+			commandHistory.push_back(input);
 		}
 		catch (std::invalid_argument& e) {
 			std::println("{}", e.what());
@@ -30,7 +34,7 @@ void Engine::run() {
 			std::println("{}", e.what());
 		}
 	}
-	//save();
+	saveState();
 }
 
 void Engine::proccessRegisterCommand(std::vector<std::string> args) {
@@ -109,6 +113,14 @@ void Engine::processCommand(const std::string& line) {
 	}
 	else if (cmd == "logout") {
 		proccessLogoutCommand(args);
+		return;
+	}
+	else if (cmd == "save") {
+		saveState();
+		return;
+	}
+	else if (cmd == "load") {
+		loadState();
 		return;
 	}
 	if (!currentUser.lock()) {
@@ -267,5 +279,49 @@ bool Engine::isAircraftOnRunway(size_t aircraftID) const {
 		}
 	}
 	return false;
+}
+
+void Engine::loadState() {
+	fflush(stdout);
+	int originalStdout = _dup(_fileno(stdout));
+	auto dummy = freopen("NUL", "w", stdout);
+
+	std::ifstream file("aeroport_data.bin");
+	
+	if (!file) {
+		throw std::runtime_error("[Error] Cannot load saved application state!");
+	}
+
+	int count = 0;
+	std::string line;
+	while (std::getline(file, line)) {
+		processCommand(line);
+		count++;
+	}
+
+	fflush(stdout);
+	auto d = _dup2(originalStdout, _fileno(stdout));
+	_close(originalStdout);
+
+	if (!count) {
+		std::println("[Error] No saved application state found!");
+		return;
+	}
+	std::println("[System] State successfully loaded in background!");
+}
+
+void Engine::saveState() {
+	std::ofstream file("aeroport_data.bin", std::ios::app);
+	if (!file) {
+		throw std::runtime_error("[Error] Cannot save current state!");
+	}
+	for (const auto& cmd : commandHistory) {
+		if (cmd != "save" && cmd != "load") {
+			file << cmd << "\n";
+		}
+	}
+	file << "logout" << "\n";
+	commandHistory.clear();
+	std::println("[System] AeroPort application state successfully serialized and saved to 'aeroport_data.bin'");
 }
 
