@@ -2,7 +2,7 @@
 #include <iostream>
 #include <print>
 
-Engine::Engine() : isRunning(true), currentUser(nullptr) {
+Engine::Engine() : isRunning(true) {
 	AirportAuthority& a = AirportAuthority::getInstance();
 	auto admin = std::make_shared<AirportAuthority>(a);
 	users.push_back(admin);
@@ -88,14 +88,14 @@ void Engine::proccessLoginCommand(std::vector<std::string> args) {
 		std::println("[Error] Invalid username or password!");
 		return;
 	}
-	std::println("[System] Successfully logged in {}. (Role: {}).", name, currentUser->getRoleStr());
+	std::println("[System] Successfully logged in {}. (Role: {}).", name, currentUser.lock()->getRoleStr());
 }
 
 void Engine::processCommand(const std::string& line) {
 	std::vector<std::string> args = splitArguments(line);
 	std::string cmd = args[0];
 
-	if (currentUser && (cmd == "login" || cmd == "register")) {
+	if (currentUser.lock() && (cmd == "login" || cmd == "register")) {
 		std::println("[Error] You are already logged in! Please logout first.");
 		return;
 	}
@@ -111,20 +111,20 @@ void Engine::processCommand(const std::string& line) {
 		proccessLogoutCommand(args);
 		return;
 	}
-	if (!currentUser) {
+	if (!currentUser.lock()) {
 		std::println("[Error] You are not logged in!");
 		return;
 	}
 
-	if (cmd == "help") { currentUser->help(); return; }
-	if (cmd == "view-profile") { currentUser->viewProfile(); return; }
+	if (cmd == "help") { currentUser.lock()->help(); return; }
+	if (cmd == "view-profile") { currentUser.lock()->viewProfile(); return; }
 
 	auto visitor = CommandFactory::create(line);
 	if (!visitor) {
 		std::println("[Error] Unknown command!");
 		return;
 	}
-	currentUser->accept(*visitor);
+	currentUser.lock()->accept(*visitor);
 }
 
 void Engine::proccessLogoutCommand(std::vector<std::string> args) {
@@ -132,12 +132,12 @@ void Engine::proccessLogoutCommand(std::vector<std::string> args) {
 		std::println("[System] Unrecognized command");
 		return;
 	}
-	if (!currentUser) {
+	if (!currentUser.lock()) {
 		std::println("[System] You are already logged out!");
 	}
 	else {
-		currentUser->logout();
-		currentUser = nullptr;
+		currentUser.lock()->logout();
+		currentUser.reset();
 	}
 }
 
@@ -242,7 +242,7 @@ bool Engine::isAircraftInHangar(size_t aircraftID) const {
 
 bool Engine::isAircraftOnRunway(size_t aircraftID) const {
 	for (const auto& runway : runways) {
-		if (runway->getAssignedPlane()->getID() == aircraftID) return true;
+		if (runway->getAssignedPlane().lock()->getID() == aircraftID) return true;
 	}
 	return false;
 }

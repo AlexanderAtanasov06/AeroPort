@@ -56,7 +56,7 @@ bool Runway::isOccupied() const {
 	return !plane.expired();
 }
 
-std::shared_ptr<Airplane> Runway::getAssignedPlane() const {
+std::weak_ptr<Airplane> Runway::getAssignedPlane() const {
 	return plane.lock();
 }
 

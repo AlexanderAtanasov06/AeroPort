@@ -34,7 +34,7 @@ public:
 	bool isWithHeavyDuty() const;
 	bool isWithVIP() const;
 	bool isOccupied() const;
-	std::shared_ptr<Airplane> getAssignedPlane() const;
+	std::weak_ptr<Airplane> getAssignedPlane() const;
 
 	void setStatus(Status status);
 	void setAssignedPlane(std::shared_ptr<Airplane> airplane);

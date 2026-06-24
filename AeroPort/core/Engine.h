@@ -15,11 +15,9 @@
 
 class Engine {
 private:
-	//std::shared_ptr<AirportAuthority> admin;
-
 	Engine();
 	bool isRunning;
-	std::shared_ptr<User> currentUser;
+	std::weak_ptr<User> currentUser;
 	std::vector<std::shared_ptr<Runway>> runways;
 	std::vector<std::shared_ptr<User>> users;
 	std::vector<std::shared_ptr<Hangar>> hangars;
@@ -33,7 +31,6 @@ private:
 	
 public:
 	static Engine& getInstance();
-
 	Engine(const Engine&) = delete;
 	Engine& operator=(const Engine&) = delete;
 
