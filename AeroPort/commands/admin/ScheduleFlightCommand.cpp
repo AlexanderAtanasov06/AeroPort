@@ -33,7 +33,8 @@ void ScheduleFlightCommand::visit(AirportAuthority& a) {
 
     std::shared_ptr<Airplane> airplane = ownerAirline->get().findAirplane(aircraftID);
     if (!airplane) {
-
+        std::println("[Error] Airplane not found!");
+        return;
     }
 
     if (!airplane->isHealthy()) {

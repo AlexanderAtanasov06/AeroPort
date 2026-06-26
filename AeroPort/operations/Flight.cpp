@@ -51,7 +51,10 @@ std::weak_ptr<Runway> Flight::getAssignedRunway() const {
 }
 
 bool Flight::hasAvailableSeats() const {
-	return plane.lock()->getCapacity() > soldTickets.size();
+	if (auto p = plane.lock()) {
+		return p->getCapacity() > soldTickets.size();
+	}
+	return false;
 }
 
 void Flight::onWeatherChange(const std::string& weather) {

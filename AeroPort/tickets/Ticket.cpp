@@ -23,7 +23,6 @@ void Ticket::addBaggage(double weight, double paid) {
     double requiredAmount = calculateBaggageFee(weight);
     if (paid < requiredAmount) {
         throw std::runtime_error("Insufficient funds for baggage fee.");
-        return;
     }
     if (weight >= remainingFreeBaggage) {
         remainingFreeBaggage = 0;

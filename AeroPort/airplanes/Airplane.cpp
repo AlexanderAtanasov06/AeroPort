@@ -10,7 +10,7 @@ void Airplane::repair() {
 	health = 100;
 }
 
-void Airplane::increaseHealth(double health) {
+void Airplane::increaseHealth(size_t health) {
 	if (health <=0 ) {
 		throw std::invalid_argument("[Error] Health must be a positive number!");
 	}
@@ -22,11 +22,7 @@ void Airplane::increaseHealth(double health) {
 
 bool Airplane::isHealthy() const
 {
-	if (health > 20)
-	{
-		return true;
-	}
-	return false;
+	return health > 20;
 }
 
 size_t Airplane::getID() const {

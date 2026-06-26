@@ -5,8 +5,11 @@ class AirportAuthority : public User {
 private:
 	AirportAuthority();
 public:
-	static AirportAuthority& getInstance();
-	//void handleCommand()
+	static std::shared_ptr<AirportAuthority> getInstance();
+
+	AirportAuthority(const AirportAuthority&) = delete;
+	AirportAuthority& operator=(const AirportAuthority&) = delete;
+
 	void help() const override;
 	void viewProfile() const override;
 

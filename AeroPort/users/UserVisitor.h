@@ -6,6 +6,8 @@ class Dispatcher;
 
 class UserVisitor {
 public:
+	virtual ~UserVisitor() = default;
+
 	virtual void visit(Passenger& p) = 0;
 	virtual void visit(AirportAuthority& a) = 0;
 	virtual	void visit(Dispatcher& a) = 0;

@@ -41,7 +41,7 @@ double Airline::getBalance() const {
 }
 
 void Airline::deductBalance(double amount) {
-	if (amount >= balance) {
+	if (amount > balance) {
 		throw std::logic_error("[Error] Deduction amount is higher than the airline's balance!");
 	}
 	balance -= amount;

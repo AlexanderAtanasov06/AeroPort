@@ -4,8 +4,8 @@ AirportAuthority::AirportAuthority()
 	: User("admin", "admin", Role::AIRPORT_AUTHORITY) {
 }
 
-AirportAuthority& AirportAuthority::getInstance() {
-	static AirportAuthority instance;
+std::shared_ptr<AirportAuthority> AirportAuthority::getInstance() {
+	static std::shared_ptr<AirportAuthority> instance(new AirportAuthority());
 	return instance;
 }
 

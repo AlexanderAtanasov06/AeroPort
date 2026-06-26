@@ -68,5 +68,5 @@ public:
 	void notifyObservers(const std::string& weather) override;
 
 	void loadState();
-	void saveState();
+	void saveState() const;
 };

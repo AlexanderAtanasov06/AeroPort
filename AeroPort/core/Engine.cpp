@@ -6,9 +6,7 @@
 #include <print>
 
 Engine::Engine() : isRunning(true), loaded(false), airportBalance(0) {
-	AirportAuthority& a = AirportAuthority::getInstance();
-	auto admin = std::make_shared<AirportAuthority>(a);
-	users.push_back(admin);
+	users.push_back(AirportAuthority::getInstance());
 }
 
 Engine& Engine::getInstance() {
@@ -331,7 +329,7 @@ void Engine::loadState() {
 	loaded = true;
 }
 
-void Engine::saveState() {
+void Engine::saveState() const {
 	std::ofstream file("aeroport_data.txt");
 	if (!file) {
 		throw std::runtime_error("[Error] Cannot save current state!");

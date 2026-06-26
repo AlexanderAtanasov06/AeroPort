@@ -22,7 +22,7 @@ public:
 	virtual std::unique_ptr<Airplane> clone() const = 0;
 
 	void repair();
-	void increaseHealth(double health);
+	void increaseHealth(size_t health);
 
 	bool isHealthy() const;
 	size_t getID() const;
