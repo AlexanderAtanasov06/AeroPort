@@ -6,14 +6,6 @@ BuyAircraftCommand::BuyAircraftCommand(const std::string& airlineName, const std
 	}
 }
 
-void BuyAircraftCommand::visit(Passenger& p) {
-	std::println("[Error] This command is not available for Passenger!");
-}
-
-void BuyAircraftCommand::visit(Dispatcher& d) {
-	std::println("[Error] This command is not available for Dispatcher!");
-}
-
 void BuyAircraftCommand::visit(AirportAuthority& a) {
 	Engine& e = Engine::getInstance();
 

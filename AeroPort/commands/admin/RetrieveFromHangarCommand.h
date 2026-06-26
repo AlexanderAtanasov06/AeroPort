@@ -7,7 +7,5 @@ class RetrieveFromHangarCommand : public CommandVisitor {
 public:
     RetrieveFromHangarCommand(size_t aircraftID);
 
-    void visit(Passenger& p) override;
-    void visit(Dispatcher& d) override;
     void visit(AirportAuthority& a) override;
 };

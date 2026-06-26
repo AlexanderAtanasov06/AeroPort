@@ -7,14 +7,6 @@ RetrieveFromHangarCommand::RetrieveFromHangarCommand(size_t aircraftID)
 	}
 }
 
-void RetrieveFromHangarCommand::visit(Passenger& p) {
-	std::println("[Error] This command is not available for Passenger!");
-}
-
-void RetrieveFromHangarCommand::visit(Dispatcher& d) {
-	std::println("[Error] This command is not available for Dispatcher!");
-}
-
 void RetrieveFromHangarCommand::visit(AirportAuthority& a) {
 	Engine& e = Engine::getInstance();
 

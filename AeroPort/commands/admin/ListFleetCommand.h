@@ -10,7 +10,5 @@ class ListFleetCommand : public CommandVisitor {
 public:
     ListFleetCommand(const std::string& airlineName);
 
-    void visit(Passenger& p) override;
-    void visit(Dispatcher& d) override;
     void visit(AirportAuthority& a) override;
 };

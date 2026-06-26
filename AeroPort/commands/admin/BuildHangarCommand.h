@@ -8,7 +8,5 @@ class BuildHangarCommand : public CommandVisitor{
 public:
 	BuildHangarCommand(const std::string& commandLine);
 
-	void visit(Passenger& p) override;
-	void visit(Dispatcher& d) override;
 	void visit(AirportAuthority& a) override;
 };

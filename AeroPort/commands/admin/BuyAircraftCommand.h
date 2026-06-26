@@ -13,7 +13,5 @@ public:
     BuyAircraftCommand(const std::string& airlineName, const std::string& type,
         const std::string& model, double capacityOrTonnage);
 
-    void visit(Passenger& p) override;
-    void visit(Dispatcher& d) override;
     void visit(AirportAuthority& a) override;
 };

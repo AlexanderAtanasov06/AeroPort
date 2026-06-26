@@ -5,14 +5,6 @@
 
 ScheduleFlightCommand::ScheduleFlightCommand(const std::string& commandLine) : commandLine(commandLine) {}
 
-void ScheduleFlightCommand::visit(Passenger& p) {
-    std::println("[Error] This command is not available for Passenger!");
-}
-
-void ScheduleFlightCommand::visit(Dispatcher& d) {
-    std::println("[Error] This command is not available for Dispatcher!");
-}
-
 void ScheduleFlightCommand::visit(AirportAuthority& a) {
     std::istringstream iss(commandLine);
     std::string command, flightID, destination;

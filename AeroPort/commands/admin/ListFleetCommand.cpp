@@ -8,14 +8,6 @@ ListFleetCommand::ListFleetCommand(const std::string& airlineName) : airlineName
     }
 }
 
-void ListFleetCommand::visit(Passenger& p) {
-    std::println("[Error] This command is not available for Passenger!");
-}
-
-void ListFleetCommand::visit(Dispatcher& d) {
-    std::println("[Error] This command is not available for Dispatcher!");
-}
-
 void ListFleetCommand::visit(AirportAuthority& a) {
     Engine& e = Engine::getInstance();
     auto airline = e.findAirline(airlineName);

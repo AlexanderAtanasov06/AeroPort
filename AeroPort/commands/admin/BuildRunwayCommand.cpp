@@ -3,14 +3,6 @@
 BuildRunwayCommand::BuildRunwayCommand(const std::string& commandLine) : commandLine(commandLine) {
 }
 
-void BuildRunwayCommand::visit(Passenger& p) {
-	std::println("[Error] This command is not available for Passenger!");
-}
-
-void BuildRunwayCommand::visit(Dispatcher& d) {
-	std::println("[Error] This command is not available for Dispatcher!");
-}
-
 void BuildRunwayCommand::visit(AirportAuthority& a) {
 	std::istringstream iss(commandLine);
 	std::string command;

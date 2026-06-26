@@ -8,14 +8,6 @@ FlightRevenueCommand::FlightRevenueCommand(const std::string& flightID) : flight
     }
 }
 
-void FlightRevenueCommand::visit(Passenger& p) {
-    std::println("[Error] This command is not available for Passenger!");
-}
-
-void FlightRevenueCommand::visit(Dispatcher& d) {
-    std::println("[Error] This command is not available for Dispatcher!");
-}
-
 void FlightRevenueCommand::visit(AirportAuthority& a) {
     Engine& e = Engine::getInstance();
 

@@ -2,14 +2,6 @@
 #include "Engine.h"
 #include <print>
 
-void AirportReportCommand::visit(Passenger& p) {
-    std::println("[Error] This command is not available for Passenger!");
-}
-
-void AirportReportCommand::visit(Dispatcher& d) {
-    std::println("[Error] This command is not available for Dispatcher!");
-}
-
 void AirportReportCommand::visit(AirportAuthority& a) {
     Engine& e = Engine::getInstance();
 

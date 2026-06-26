@@ -9,14 +9,6 @@ CancelFlightCommand::CancelFlightCommand(const std::string& flightID)
 	}
 }
 
-void CancelFlightCommand::visit(Passenger& p) {
-	std::println("[Error] This command is not available for Passenger!");
-}
-
-void CancelFlightCommand::visit(Dispatcher& d) {
-	std::println("[Error] This command is not available for Dispatcher!");
-}
-
 void CancelFlightCommand::visit(AirportAuthority& a) {
 	Engine& e = Engine::getInstance();
 	std::shared_ptr<Flight> flight = nullptr;

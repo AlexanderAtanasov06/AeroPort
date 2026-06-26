@@ -4,14 +4,6 @@ SendToHangarCommand::SendToHangarCommand(size_t aircraftID, const std::string& h
     : aircraftID(aircraftID), hangarID(hangarID) {
 }
 
-void SendToHangarCommand::visit(Passenger& p) {
-    std::println("[Error] This command is not available for Passenger!");
-}
-
-void SendToHangarCommand::visit(Dispatcher& d) {
-    std::println("[Error] This command is not available for Dispatcher!");
-}
-
 void SendToHangarCommand::visit(AirportAuthority& a) {
     Engine& e = Engine::getInstance();
 

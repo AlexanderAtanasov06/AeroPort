@@ -9,7 +9,5 @@ class CloneAircraftCommand : public CommandVisitor {
 public:
     CloneAircraftCommand(size_t airplaneID, size_t count);
 
-    void visit(Passenger& p) override;
-    void visit(Dispatcher& d) override;
     void visit(AirportAuthority& a) override;
 };

@@ -7,14 +7,6 @@ SetWeatherCommand::SetWeatherCommand(const std::string& commandLine)
     : commandLine(commandLine) {
 }
 
-void SetWeatherCommand::visit(Passenger& p) {
-    std::println("[Error] This command is not available for Passenger!");
-}
-
-void SetWeatherCommand::visit(Dispatcher& d) {
-    std::println("[Error] This command is not available for Dispatcher!");
-}
-
 void SetWeatherCommand::visit(AirportAuthority& a) {
     std::istringstream iss(commandLine);
     std::string command, weatherStr;

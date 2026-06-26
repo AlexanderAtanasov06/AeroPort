@@ -9,14 +9,6 @@ AuditAirlineCommand::AuditAirlineCommand(const std::string& airlineName)
     }
 }
 
-void AuditAirlineCommand::visit(Passenger& p) {
-    std::println("[Error] This command is not available for Passenger!");
-}
-
-void AuditAirlineCommand::visit(Dispatcher& d) {
-    std::println("[Error] This command is not available for Dispatcher!");
-}
-
 void AuditAirlineCommand::visit(AirportAuthority& a) {
     Engine& e = Engine::getInstance();
 

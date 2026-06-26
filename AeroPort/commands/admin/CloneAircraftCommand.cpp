@@ -7,14 +7,6 @@ CloneAircraftCommand::CloneAircraftCommand(size_t airplaneID, size_t count)
     }
 }
 
-void CloneAircraftCommand::visit(Passenger& p) {
-    std::println("[Error] This command is not available for Passenger!");
-}
-
-void CloneAircraftCommand::visit(Dispatcher& d) {
-    std::println("[Error] This command is not available for Dispatcher!");
-}
-
 void CloneAircraftCommand::visit(AirportAuthority& a) {
     Engine& e = Engine::getInstance();
     
