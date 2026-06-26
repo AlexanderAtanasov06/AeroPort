@@ -28,7 +28,7 @@ void Engine::run() {
 		catch (std::invalid_argument& e) {
 			std::println("{}", e.what());
 		}
-		catch (std::exception e) {
+		catch (std::exception& e) {
 			std::println("{}", e.what());
 		}
 	}
@@ -95,6 +95,7 @@ void Engine::proccessLoginCommand(std::vector<std::string> args) {
 
 void Engine::processCommand(const std::string& line) {
 	std::vector<std::string> args = splitArguments(line);
+	if (args.empty()) return;
 	std::string cmd = args[0];
 
 	if (currentUser.lock() && (cmd == "login" || cmd == "register")) {
