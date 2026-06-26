@@ -64,11 +64,3 @@ void CancelTicketCommand::visit(Passenger& p) {
     std::println("[Success] {} ticket for {} cancelled. Refunded: {:.2f} EUR. Current balance: {:.2f} EUR.",
         ticketTypeStr, flightId, refundAmount, p.getBalance());
 }
-
-void CancelTicketCommand::visit(Dispatcher& d) {
-    std::println("[Error] This command is not available for Dispatcher!");
-}
-
-void CancelTicketCommand::visit(AirportAuthority& a) {
-    std::println("[Error] This command is not available for System Administrator!");
-}

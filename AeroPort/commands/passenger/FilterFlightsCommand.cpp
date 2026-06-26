@@ -34,11 +34,3 @@ void FilterFlightsCommand::visit(Passenger& p) {
         std::println("[System] No flights found under {:.2f} EUR.", maxPrice);
     }
 }
-
-void FilterFlightsCommand::visit(Dispatcher& d) {
-    std::println("[Error] This command is not available for Dispatcher!");
-}
-
-void FilterFlightsCommand::visit(AirportAuthority& a) {
-    std::println("[Error] This command is not available for System Administrator!");
-}

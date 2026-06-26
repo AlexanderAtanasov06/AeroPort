@@ -37,11 +37,3 @@ void MyTicketsCommand::visit(Passenger& p) {
         );
     }
 }
-
-void MyTicketsCommand::visit(Dispatcher& d) {
-    std::println("[Error] This command is not available for Dispatcher!");
-}
-
-void MyTicketsCommand::visit(AirportAuthority& a) {
-    std::println("[Error] This command is not available for System Administrator!");
-}

@@ -13,6 +13,4 @@ public:
     BookTicketCommand(const std::string& flightId, const std::string& ticketType);
 
     void visit(Passenger& p) override;
-    void visit(Dispatcher& d) override;
-    void visit(AirportAuthority& a) override;
 };

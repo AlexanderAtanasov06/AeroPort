@@ -108,11 +108,3 @@ void UpgradeTicketCommand::visit(Passenger& p) {
 		priceDiff,
 		p.getBalance());
 }
-
-void UpgradeTicketCommand::visit(Dispatcher& d) {
-	std::println("[Error] This command is not available for Dispatcher!");
-}
-
-void UpgradeTicketCommand::visit(AirportAuthority& a) {
-	std::println("[Error] This command is not available for System Administrator!");
-}

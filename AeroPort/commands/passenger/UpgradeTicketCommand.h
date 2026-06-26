@@ -11,6 +11,4 @@ public:
     UpgradeTicketCommand(const std::string& flightId, const std::string& newTicketType);
 
     void visit(Passenger& p);
-    void visit(Dispatcher& d);
-    void visit(AirportAuthority& a);
 };

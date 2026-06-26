@@ -12,6 +12,4 @@ public:
     AddBaggageCommand(const std::string& flightId, double weight);
 
     void visit(Passenger& p) override;
-    void visit(Dispatcher& d) override;
-    void visit(AirportAuthority& a) override;
 };

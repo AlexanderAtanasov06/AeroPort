@@ -57,11 +57,3 @@ void AddBaggageCommand::visit(Passenger& p) {
         std::println("[Error] {}", e.what());
     }
 }
-
-void AddBaggageCommand::visit(Dispatcher& d) {
-    std::println("[Error] This command is not available for Dispatcher!");
-}
-
-void AddBaggageCommand::visit(AirportAuthority& a) {
-    std::println("[Error] This command is not available for System Administrator!");
-}

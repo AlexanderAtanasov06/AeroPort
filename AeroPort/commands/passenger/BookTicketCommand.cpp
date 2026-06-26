@@ -79,11 +79,3 @@ void BookTicketCommand::visit(Passenger& p) {
     std::println("ticket booked for {}. Paid: {:.2f} EUR. Current balance: {:.2f} EUR.",
         flightId, ticketPrice, p.getBalance());
 }
-
-void BookTicketCommand::visit(Dispatcher& d) {
-    std::println("[Error] This command is not available for Dispatcher!");
-}
-
-void BookTicketCommand::visit(AirportAuthority& a) {
-    std::println("[Error] This command is not available for System Administrator!");
-}

@@ -26,11 +26,3 @@ void ListFlightsCommand::visit(Passenger& p) {
 		std::println("[System] No available flights to {}.", destination);
 	}
 }
-
-void ListFlightsCommand::visit(Dispatcher& d) {
-	std::println("[Error] This command is not available for Dispatcher!");
-}
-
-void ListFlightsCommand::visit(AirportAuthority& a) {
-	std::println("[Error] This command is not available for System Administrator!");
-}
