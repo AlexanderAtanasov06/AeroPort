@@ -18,13 +18,14 @@ void CloneAircraftCommand::visit(Dispatcher& d) {
 void CloneAircraftCommand::visit(AirportAuthority& a) {
     Engine& e = Engine::getInstance();
     
-    auto airline = e.findAirlineByAircraftID(airplaneID);
-    if (!airline) {
+    auto airlineOpt = e.findAirlineByAircraftID(airplaneID);
+    if (!airlineOpt) {
         std::println("[Error] No aircraft with ID {} found in any airline!", airplaneID);
         return;
     }
 
-    auto plane = airline->findAirplane(airplaneID);
+    Airline& airline = airlineOpt->get();
+    auto plane = airline.findAirplane(airplaneID);
     if (!plane) {
         std::println("[Error] Aircraft with ID {} not found!", airplaneID);
         return;
@@ -32,18 +33,18 @@ void CloneAircraftCommand::visit(AirportAuthority& a) {
 
     double totalCost = AIRCRAFT_PRICE * count;
 
-    if (airline->getBalance() < totalCost) {
+    if (airline.getBalance() < totalCost) {
         std::println("[Error] Insufficient funds! {} balance: {:.2f} EUR. Required: {:.2f} EUR.",
-            airline->getName(), airline->getBalance(), totalCost);
+            airline.getName(), airline.getBalance(), totalCost);
         return;
     }
 
     for (size_t i = 0; i < count; i++) {
         auto clone = plane->clone();
         size_t newID = clone->getID();
-        airline->addAirplane(std::move(clone));
-        airline->deductBalance(AIRCRAFT_PRICE);
+        airline.addAirplane(std::move(clone));
+        airline.deductBalance(AIRCRAFT_PRICE);
         std::println("[System] Aircraft ID: {} successfully cloned. New Aircraft ID: {}. {} balance: {:.2f} EUR.",
-            airplaneID, newID, airline->getName(), airline->getBalance());
+            airplaneID, newID, airline.getName(), airline.getBalance());
     }
 }

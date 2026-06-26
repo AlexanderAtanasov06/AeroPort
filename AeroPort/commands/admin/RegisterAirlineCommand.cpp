@@ -24,7 +24,7 @@ void RegisterAirlineCommand::visit(AirportAuthority& a) {
         return;
     }
 
-    auto airline = std::make_shared<Airline>(name, balance);
-    e.addAirline(airline);
+    auto airline = std::make_unique<Airline>(name, balance);
+    e.addAirline(std::move(airline));
     std::println("[System] Airline '{}' registered successfully. Corporate Balance: {:.2f} EUR.", name, balance);
 }

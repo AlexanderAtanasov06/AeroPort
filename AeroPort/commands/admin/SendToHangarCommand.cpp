@@ -15,13 +15,14 @@ void SendToHangarCommand::visit(Dispatcher& d) {
 void SendToHangarCommand::visit(AirportAuthority& a) {
     Engine& e = Engine::getInstance();
 
-    auto airline = e.findAirlineByAircraftID(aircraftID);
-    if (!airline) {
+    auto airlineOpt = e.findAirlineByAircraftID(aircraftID);
+    if (!airlineOpt) {
         std::println("[Error] No aircraft with ID {} found in any airline!", aircraftID);
         return;
     }
 
-    auto aircraft = airline->findAirplane(aircraftID);
+    Airline& airline = airlineOpt->get();
+    auto aircraft = airline.findAirplane(aircraftID);
     if (!aircraft) {
         std::println("[Error] Aircraft with ID {} not found!", aircraftID);
         return;
@@ -50,15 +51,15 @@ void SendToHangarCommand::visit(AirportAuthority& a) {
     }
 
     double fee = hangar->get().getRepairFee();
-    if (airline->getBalance() < fee) {
+    if (airline.getBalance() < fee) {
         std::println("[Error] Insufficient funds! {} balance: {:.2f} EUR. Repair fee: {:.2f} EUR.",
-            airline->getName(), airline->getBalance(), fee);
+            airline.getName(), airline.getBalance(), fee);
         return;
     }
 
     hangar->get().addAircraft(aircraft);
-    airline->deductBalance(fee);
+    airline.deductBalance(fee);
 
     std::println("[Success] Aircraft ID: {} admitted to Hangar {}. {:.2f} EUR deducted from {} balance.",
-        aircraftID, hangarID, fee, airline->getName());
+        aircraftID, hangarID, fee, airline.getName());
 }

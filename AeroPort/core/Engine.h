@@ -23,9 +23,9 @@ private:
 	double airportBalance;
 	std::weak_ptr<User> currentUser;
 	std::vector<std::shared_ptr<User>> users;
-	std::vector<std::unique_ptr<Hangar>> hangars;
 	std::vector<std::shared_ptr<Runway>> runways;
-	std::vector<std::shared_ptr<Airline>> airlines;
+	std::vector<std::unique_ptr<Hangar>> hangars;
+	std::vector<std::unique_ptr<Airline>> airlines;
 
 	std::vector<std::shared_ptr<IWeatherObserver>> observers;
 
@@ -44,17 +44,17 @@ public:
 
 	void addRunway(std::shared_ptr<Runway> runway);
 	void addHangar(std::unique_ptr<Hangar> hangar);
-	void addAirline(std::shared_ptr<Airline> airline);
+	void addAirline(std::unique_ptr<Airline> airline);
 
-	std::shared_ptr<Airline> findAirlineByAircraftID(size_t id) const;
+	std::optional<std::reference_wrapper<Airline>> findAirlineByAircraftID(size_t id) const;
+	std::optional<std::reference_wrapper<Airline>> findAirline(const std::string& name) const;
 	std::optional<std::reference_wrapper<Hangar>> findHangarByAircraftID(size_t id) const;
 	std::shared_ptr<User> findUserByName(const std::string& name) const;
 	std::shared_ptr<Runway> findRunway(const std::string& id) const;
 	std::optional<std::reference_wrapper<Hangar>> findHangar(const std::string& id) const;
-	std::shared_ptr<Airline> findAirline(const std::string& name) const;
 
 	const std::vector<std::shared_ptr<Runway>>& getRunways() const;
-	const std::vector<std::shared_ptr<Airline>>& getAirlines() const;
+	const std::vector<std::unique_ptr<Airline>>& getAirlines() const;
 
 	double getAirportBalance() const;
 	void addAirportBalance(double amount);

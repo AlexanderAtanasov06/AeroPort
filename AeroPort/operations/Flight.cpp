@@ -56,7 +56,7 @@ bool Flight::hasAvailableSeats() const {
 
 void Flight::onWeatherChange(const std::string& weather) {
 	if (weather != "STORM") return;
-	if (status != Status::SCHEDULED && status != Status::DELAYED) return;
+	if (status != Status::SCHEDULED && status != Status::DELAYED && status != Status::BOARDING) return;
 
 	Engine& e = Engine::getInstance();
 

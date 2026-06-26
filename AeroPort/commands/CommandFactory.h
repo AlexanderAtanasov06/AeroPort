@@ -32,6 +32,7 @@
 #include "ListRunwaysCommand.h"
 #include "ListFleetCommand.h"
 #include "FlightRevenueCommand.h"
+#include "FilterFlightsCommand.h"
 
 class CommandFactory {
 public:

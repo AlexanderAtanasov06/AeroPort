@@ -48,9 +48,6 @@ void Airline::deductBalance(double amount) {
 }
 
 void Airline::addBalance(double amount) {
-	if (amount <= 0) {
-		throw std::logic_error("[Error] Addition amount must be a positive number!");
-	}
 	balance += amount;
 }
 

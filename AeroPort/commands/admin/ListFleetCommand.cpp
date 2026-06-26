@@ -27,7 +27,7 @@ void ListFleetCommand::visit(AirportAuthority& a) {
 
     std::println("Fleet Overview for {}:", airlineName);
     
-    const auto& fleet = airline->getAirplanes();
+    const auto& fleet = airline->get().getAirplanes();
     if (fleet.empty()) {
         std::println("[System] {} has no airplanes in its fleet.", airlineName);
         return;

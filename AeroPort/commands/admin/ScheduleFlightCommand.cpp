@@ -33,13 +33,13 @@ void ScheduleFlightCommand::visit(AirportAuthority& a) {
         }
     }
 
-    std::shared_ptr<Airline> ownerAirline = e.findAirlineByAircraftID(aircraftID);
+    auto ownerAirline = e.findAirlineByAircraftID(aircraftID);
     if (!ownerAirline) {
         std::println("[Error] No aircraft with ID {} found in any airline!", aircraftID);
         return;
     }
 
-    std::shared_ptr<Airplane> airplane = ownerAirline->findAirplane(aircraftID);
+    std::shared_ptr<Airplane> airplane = ownerAirline->get().findAirplane(aircraftID);
     if (!airplane) {
 
     }
@@ -60,7 +60,7 @@ void ScheduleFlightCommand::visit(AirportAuthority& a) {
     }
 
     std::shared_ptr<Flight> flight = std::make_shared<Flight>(flightID, airplane, destination, basePrice);
-    ownerAirline->addFlight(flight);
+    ownerAirline->get().addFlight(flight);
     e.addObserver(flight);
 
     std::println("[System] {} Flight {} to {} is now Scheduled.", airplane->getType(), flightID, destination);

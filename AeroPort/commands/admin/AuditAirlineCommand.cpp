@@ -20,18 +20,18 @@ void AuditAirlineCommand::visit(Dispatcher& d) {
 void AuditAirlineCommand::visit(AirportAuthority& a) {
     Engine& e = Engine::getInstance();
 
-    std::shared_ptr<Airline> airline = e.findAirline(airlineName);
+    auto airline = e.findAirline(airlineName);
 
     if (!airline) {
         std::println("[Error] Airline '{}' not found!", airlineName);
         return;
     }
 
-    size_t totalAircraft = airline->getAirplanes().size();
+    size_t totalAircraft = airline->get().getAirplanes().size();
     size_t completedFlights = 0;
     size_t cancelledFlights = 0;
 
-    for (const auto& flight : airline->getFlights()) {
+    for (const auto& flight : airline->get().getFlights()) {
         if (flight->getStatus() == Flight::Status::DEPARTED) {
             completedFlights++;
         }
@@ -44,5 +44,5 @@ void AuditAirlineCommand::visit(AirportAuthority& a) {
     std::println("Total Owned Aircraft: {}", totalAircraft);
     std::println("Completed Flights (Departed): {}", completedFlights);
     std::println("Cancelled Flights: {}", cancelledFlights);
-    std::println("Current Corporate Balance: {:.2f} EUR", airline->getBalance());
+    std::println("Current Corporate Balance: {:.2f} EUR", airline->get().getBalance());
 }

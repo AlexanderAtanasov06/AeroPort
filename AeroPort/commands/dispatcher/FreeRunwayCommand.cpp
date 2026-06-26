@@ -9,21 +9,16 @@ FreeRunwayUndoAction::FreeRunwayUndoAction(const std::string& fID, const std::st
 void FreeRunwayUndoAction::undo() {
 	Engine& e = Engine::getInstance();
 
-	std::shared_ptr<Airline> airline = nullptr;
-	for (const auto& a : e.getAirlines()) {
-		if (a->getName() == airlineName) {
-			airline = a;
-			break;
-		}
-	}
+	auto airlineOpt = e.findAirline(airlineName);
+	Airline& airline = airlineOpt->get();
 
 	std::shared_ptr<Flight> flight = nullptr;
-	if (airline) {
-		flight = airline->findFlight(flightID);
+	if (airlineOpt) {
+		flight = airline.findFlight(flightID);
 	}
 	auto runway = e.findRunway(runwayID);
 
-	if (flight && runway && airline) {
+	if (flight && runway && airlineOpt) {
 		flight->setStatus(prevFlightStatus);
 		flight->setAssignedRunway(runway);
 
@@ -31,8 +26,7 @@ void FreeRunwayUndoAction::undo() {
 		runway->setStatus(Runway::Status::OCCUPIED);
 		runway->setAssignedPlane(airplane);
 
-		airline->deductBalance(airlineRevenueAdded);
-
+		airline.addBalance(-airlineRevenueAdded);
 		if (airplane) {
 			airplane->increaseHealth(healthDeducted);
 		}
@@ -75,14 +69,13 @@ void FreeRunwayCommand::visit(Dispatcher& d) {
 	}
 
 	std::shared_ptr<Flight> activeFlight = nullptr;
-	std::shared_ptr<Airline> activeAirline = nullptr;
-
+	Airline* activeAirline = nullptr;
 	for (const auto& airline : e.getAirlines()) {
 		for (const auto& flight : airline->getFlights()) {
 			auto assignedRunway = flight->getAssignedRunway().lock();
 			if (assignedRunway == runway && flight->getStatus() == Flight::Status::BOARDING) {
 				activeFlight = flight;
-				activeAirline = airline;
+				activeAirline = airline.get();
 				break;
 			}
 		}
@@ -122,12 +115,8 @@ void FreeRunwayCommand::visit(Dispatcher& d) {
 	}
 
 	airlineRevenue -= airportRevenue;
-	if (airlineRevenue < 0) {
-		activeAirline->deductBalance(airlineRevenue);
-	}
-	else {
-		activeAirline->addBalance(airlineRevenue);
-	}
+
+	activeAirline->addBalance(airlineRevenue);
 	e.addAirportBalance(airportRevenue);
 	int healthCost = airplane->decreaseHealthAfterFlight();
 

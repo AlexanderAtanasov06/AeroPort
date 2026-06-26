@@ -49,7 +49,6 @@ void BuildRunwayCommand::visit(AirportAuthority& a) {
 		}
 	}
 	std::unique_ptr<Runway> runway = std::make_unique<Runway>(builder.build());
-	e.addRunway(std::move(runway));
 
 	std::print("[System] Runway {} ({}m", id, length);
 	if (!runway->isWithILS() && !runway->isWithHeavyDuty() && !runway->isWithVIP()) {
@@ -61,4 +60,5 @@ void BuildRunwayCommand::visit(AirportAuthority& a) {
 		if (runway->isWithVIP()) std::print(", VIP Terminal");
 	}
 	std::println(") built successfully");
+	e.addRunway(std::move(runway));
 }

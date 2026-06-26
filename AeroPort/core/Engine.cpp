@@ -171,18 +171,18 @@ void Engine::addHangar(std::unique_ptr<Hangar> hangar) {
 	hangars.push_back(std::move(hangar));
 }
 
-void Engine::addAirline(std::shared_ptr<Airline> airline) {
-	airlines.push_back(airline);
+void Engine::addAirline(std::unique_ptr<Airline> airline) {
+	airlines.push_back(std::move(airline));
 }
 
-std::shared_ptr<Airline> Engine::findAirlineByAircraftID(size_t id) const {
+std::optional<std::reference_wrapper<Airline>> Engine::findAirlineByAircraftID(size_t id) const {
 	for (const auto& airline : airlines) {
 		auto airplane = airline->findAirplane(id);
 		if (airplane) {
-			return airline;
+			return std::ref(*airline);
 		}
 	}
-	return nullptr;
+	return std::nullopt;
 }
 
 std::optional<std::reference_wrapper<Hangar>> Engine::findHangarByAircraftID(size_t id) const {
@@ -225,21 +225,21 @@ std::optional<std::reference_wrapper<Hangar>> Engine::findHangar(const std::stri
 	return std::nullopt;
 }
 
-std::shared_ptr<Airline> Engine::findAirline(const std::string& name) const {
+std::optional<std::reference_wrapper<Airline>> Engine::findAirline(const std::string& name) const {
 	auto it = std::find_if(airlines.begin(), airlines.end(), [&name](const auto& airline) {
 		return airline->getName() == name;
 		});
 	if (it != airlines.end()) {
-		return *it;
+		return std::ref(**it);
 	}
-	return nullptr;
+	return std::nullopt;
 }
 
 const std::vector<std::shared_ptr<Runway>>& Engine::getRunways() const {
 	return runways;
 }
 
-const std::vector<std::shared_ptr<Airline>>& Engine::getAirlines() const {
+const std::vector<std::unique_ptr<Airline>>& Engine::getAirlines() const {
 	return airlines;
 }
 

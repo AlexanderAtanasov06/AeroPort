@@ -164,6 +164,13 @@ std::unique_ptr<CommandVisitor> CommandFactory::create(const std::string& line) 
 		}
 			return std::make_unique<FlightRevenueCommand>(flightID);
 		}},
+		{ "filter-flights", [](std::istringstream& iss, const std::string&) {
+			double maxPrice;
+			if (!(iss >> maxPrice)) {
+			throw std::invalid_argument("[Error] Correct format is: filter-flights <max price>");
+		}
+			return std::make_unique<FilterFlightsCommand>(maxPrice);
+		}},
 		{ "set-weather", [](std::istringstream& iss, const std::string& line) {
 			return std::make_unique<SetWeatherCommand>(line);
 		}}

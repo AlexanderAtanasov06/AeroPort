@@ -2,7 +2,7 @@
 #include "Engine.h"
 #include <print>
 
-CancelFlightCommand::CancelFlightCommand(const std::string& flightID) 
+CancelFlightCommand::CancelFlightCommand(const std::string& flightID)
 	: flightID(flightID) {
 	if (flightID.empty()) {
 		throw std::invalid_argument("[Error] Flight ID must not be empty!");
@@ -19,15 +19,12 @@ void CancelFlightCommand::visit(Dispatcher& d) {
 
 void CancelFlightCommand::visit(AirportAuthority& a) {
 	Engine& e = Engine::getInstance();
-
-	std::shared_ptr<Airline> ownerAirline = nullptr;
 	std::shared_ptr<Flight> flight = nullptr;
 
 	for (const auto& airline : e.getAirlines()) {
 		auto f = airline->findFlight(flightID);
 		if (f) {
 			flight = f;
-			ownerAirline = airline;
 			break;
 		}
 	}
