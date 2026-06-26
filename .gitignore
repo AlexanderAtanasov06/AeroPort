@@ -369,3 +369,6 @@ CMakeFiles/
 cmake_install.cmake
 /AeroPort/source.cpp
 /AeroPort/history.txt
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
