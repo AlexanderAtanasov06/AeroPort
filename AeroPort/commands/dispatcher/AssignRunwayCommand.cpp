@@ -36,14 +36,6 @@ AssignRunwayCommand::AssignRunwayCommand(const std::string& flightID, const std:
     }
 }
 
-void AssignRunwayCommand::visit(Passenger& p) {
-    std::println("[Error] This command is not available for Passenger!");
-}
-
-void AssignRunwayCommand::visit(AirportAuthority& a) {
-    std::println("[Error] This command is not available for System Administrator!");
-}
-
 void AssignRunwayCommand::visit(Dispatcher& d) {
     Engine& e = Engine::getInstance();
 

@@ -46,14 +46,6 @@ FreeRunwayCommand::FreeRunwayCommand(const std::string& runwayID) : runwayID(run
 	}
 }
 
-void FreeRunwayCommand::visit(Passenger& p) {
-	std::println("[Error] This command is not available for Passenger!");
-}
-
-void FreeRunwayCommand::visit(AirportAuthority& a) {
-	std::println("[Error] This command is not available for System Administrator!");
-}
-
 void FreeRunwayCommand::visit(Dispatcher& d) {
 	Engine& e = Engine::getInstance();
 

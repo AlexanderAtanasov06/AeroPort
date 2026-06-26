@@ -29,14 +29,6 @@ DelayFlightCommand::DelayFlightCommand(const std::string& flightID) : flightID(f
     }
 }
 
-void DelayFlightCommand::visit(Passenger& p) {
-    std::println("[Error] This command is not available for Passenger!");
-}
-
-void DelayFlightCommand::visit(AirportAuthority& a) {
-    std::println("[Error] This command is not available for System Administrator!");
-}
-
 void DelayFlightCommand::visit(Dispatcher& d) {
     Engine& e = Engine::getInstance();
 
