@@ -5,7 +5,7 @@
 #include <iostream>
 #include <print>
 
-Engine::Engine() : isRunning(true), airportBalance(0) {
+Engine::Engine() : isRunning(true), loaded(false), airportBalance(0) {
 	AirportAuthority& a = AirportAuthority::getInstance();
 	auto admin = std::make_shared<AirportAuthority>(a);
 	users.push_back(admin);
@@ -292,14 +292,23 @@ void Engine::notifyObservers(const std::string& weather) {
 }
 
 void Engine::loadState() {
+	if (loaded) {
+		std::println("[Error] Previously saved state is already loaded from file!");
+		return;
+	}
+
 	fflush(stdout);
 	int originalStdout = _dup(_fileno(stdout));
 	auto dummy = freopen("NUL", "w", stdout);
 
-	std::ifstream file("aeroport_data.bin");
+	std::ifstream file("aeroport_data.txt");
 	
 	if (!file) {
-		throw std::runtime_error("[Error] Cannot load saved application state!");
+		std::ofstream create_file("aeroport_data.txt");
+
+		if (!create_file) {
+			throw std::runtime_error("[Error] Cannot create application state file!");
+		}
 	}
 
 	int count = 0;
@@ -319,10 +328,11 @@ void Engine::loadState() {
 		return;
 	}
 	std::println("[System] State successfully loaded in background!");
+	loaded = true;
 }
 
 void Engine::saveState() {
-	std::ofstream file("aeroport_data.bin");
+	std::ofstream file("aeroport_data.txt");
 	if (!file) {
 		throw std::runtime_error("[Error] Cannot save current state!");
 	}
@@ -332,6 +342,6 @@ void Engine::saveState() {
 		}
 	}
 	file << "logout" << "\n";
-	std::println("[System] AeroPort application state successfully serialized and saved to 'aeroport_data.bin'");
+	std::println("[System] AeroPort application state successfully serialized and saved to 'aeroport_data.txt'");
 }
 

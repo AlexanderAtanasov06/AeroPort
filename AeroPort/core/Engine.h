@@ -19,6 +19,7 @@ class Engine : public WeatherSubject {
 private:
 	Engine();
 	bool isRunning;
+	bool loaded;
 	std::vector<std::string> commandHistory;
 	double airportBalance;
 	std::weak_ptr<User> currentUser;
