@@ -35,7 +35,7 @@ void Engine::run() {
 	saveState();
 }
 
-void Engine::proccessRegisterCommand(std::vector<std::string> args) {
+void Engine::processRegisterCommand(std::vector<std::string> args) {
 	if (args.size() != 4) {
 		std::println("[Error] Invalid arguments! Correct format is: register <name> <password> <role>.");
 		return;
@@ -70,7 +70,7 @@ void Engine::proccessRegisterCommand(std::vector<std::string> args) {
 	std::println("[System] User '{}' registered succesfully (Role: {})", name, role);
 }
 
-void Engine::proccessLoginCommand(std::vector<std::string> args) {
+void Engine::processLoginCommand(std::vector<std::string> args) {
 	if (args.size() != 3) {
 		std::println("[Error] Invalid arguments! Correct format is: login <name> <password>.");
 		return;
@@ -103,15 +103,15 @@ void Engine::processCommand(const std::string& line) {
 		return;
 	}
 	if (cmd == "login") {
-		proccessLoginCommand(args);
+		processLoginCommand(args);
 		return;
 	}
 	else if (cmd == "register") {
-		proccessRegisterCommand(args);
+		processRegisterCommand(args);
 		return;
 	}
 	else if (cmd == "logout") {
-		proccessLogoutCommand(args);
+		processLogoutCommand(args);
 		return;
 	}
 	else if (cmd == "save") {
@@ -138,7 +138,7 @@ void Engine::processCommand(const std::string& line) {
 	currentUser.lock()->accept(*visitor);
 }
 
-void Engine::proccessLogoutCommand(std::vector<std::string> args) {
+void Engine::processLogoutCommand(std::vector<std::string> args) {
 	if (args.size() != 1) {
 		std::println("[System] Unrecognized command");
 		return;

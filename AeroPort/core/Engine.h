@@ -31,9 +31,9 @@ private:
 	std::vector<std::shared_ptr<IWeatherObserver>> observers;
 
 	std::vector<std::string> splitArguments(const std::string& line);
-	void proccessLogoutCommand(std::vector<std::string> args);
-	void proccessLoginCommand(std::vector<std::string> args);
-	void proccessRegisterCommand(std::vector<std::string> args);
+	void processLogoutCommand(std::vector<std::string> args);
+	void processLoginCommand(std::vector<std::string> args);
+	void processRegisterCommand(std::vector<std::string> args);
 	void processCommand(const std::string& line);
 
 public:
